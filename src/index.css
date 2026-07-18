@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --color-primary-50: #f3f1fe;
+  --color-primary-100: #e8e4fd;
+  --color-primary-200: #d4cdfb;
+  --color-primary-300: #b5a8f8;
+  --color-primary-400: #9580f3;
+  --color-primary-500: #6C5CE7;
+  --color-primary-600: #5a3fd9;
+  --color-primary-700: #4c31bf;
+  --color-primary-800: #3f299c;
+  --color-primary-900: #362480;
+  --color-primary-950: #211456;
+  --color-accent-50: #effefe;
+  --color-accent-100: #c7fdfc;
+  --color-accent-200: #90fafb;
+  --color-accent-300: #51eff2;
+  --color-accent-400: #1ddce2;
+  --color-accent-500: #00D2D3;
+  --color-accent-600: #03a0a6;
+  --color-accent-700: #0a8085;
+  --color-accent-800: #11656b;
+  --color-accent-900: #13535a;
+  --color-accent-950: #05343a;
+  --color-highlight-50: #fff1f1;
+  --color-highlight-100: #ffe1e1;
+  --color-highlight-200: #ffc7c7;
+  --color-highlight-300: #ffa0a0;
+  --color-highlight-400: #FD7272;
+  --color-highlight-500: #f53d3d;
+  --color-highlight-600: #e22020;
+  --color-highlight-700: #be1717;
+  --color-highlight-800: #9d1717;
+  --color-highlight-900: #821a1a;
+  --color-highlight-950: #470808;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-heading: 'Outfit', system-ui, sans-serif;
+}
+
+/* Custom scrollbar for light mode */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Z-Index Overrides for Proper Layering */
+nav {
+  z-index: 100 !important; /* Forces fixed navbar to always be on top */
+}
+
+main {
+  position: relative;
+  z-index: 10 !important; /* Page contents lay under navbar but above basic elements */
+}
+
+section {
+  position: relative;
+  z-index: 10 !important;
+}
+
+.card-hover {
+  position: relative;
+  z-index: 10 !important;
+}
+
+.card-hover:hover {
+  z-index: 20 !important; /* Elevate card on hover while staying below navbar */
+}
+
+/* Global Light Mode Overrides with Premium Radial Mesh Background */
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #f8fafc !important; 
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(108, 92, 231, 0.04) 0px, transparent 50%),
+    radial-gradient(at 50% 0%, rgba(0, 210, 211, 0.03) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(108, 92, 231, 0.04) 0px, transparent 50%) !important;
+  background-attachment: fixed;
+  color: #0f172a !important; /* dark text */
+  overflow-x: hidden;
+}
+
+/* Overriding page wrapper background colors */
+.bg-\[\#0f0f1a\] {
+  background-color: transparent !important;
+  color: #0f172a !important;
+}
+
+/* Override dark mode layout main wrapper text color */
+.text-slate-200 {
+  color: #1e293b !important;
+}
+
+/* Custom text color overrides for light mode */
+.text-slate-100 {
+  color: #0f172a !important; /* dark headers */
+}
+.text-slate-300 {
+  color: #334155 !important;
+}
+.text-slate-400 {
+  color: #475569 !important; /* darker gray text for visibility */
+}
+.text-slate-500 {
+  color: #64748b !important;
+}
+
+/* Keep gradient text shiny but readable */
+.gradient-text {
+  background: linear-gradient(135deg, #6C5CE7, #03a0a6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Premium Shadows and Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(108, 92, 231, 0.08) !important;
+  box-shadow: 0 10px 30px -10px rgba(108, 92, 231, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+}
+
+.glass-dark {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+}
+
+/* Overriding background classes used inside lists or cards */
+.bg-white\/5 {
+  background-color: #f1f5f9 !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+.bg-white\/10 {
+  background-color: #e2e8f0 !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+.bg-white\/\[0\.02\] {
+  background-color: #f8fafc !important;
+}
+.bg-white\/\[0\.01\]:hover {
+  background-color: #f1f5f9 !important;
+}
+.bg-\[\#16162a\], .bg-\[\#1a1a3a\], .bg-\[\#131326\] {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(108, 92, 231, 0.08) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01) !important;
+}
+
+/* Card hover shadow adjustment for light theme - premium depth */
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -15px rgba(108, 92, 231, 0.15) !important;
+  border-color: rgba(108, 92, 231, 0.25) !important;
+}
+
+/* Inputs, textareas, and selects styling with subtle inner shadow */
+input, select, textarea {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  color: #0f172a !important;
+  transition: all 0.2s ease-in-out !important;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.01) !important;
+}
+input:focus, select:focus, textarea:focus {
+  background-color: #ffffff !important;
+  border-color: #6C5CE7 !important;
+  box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.1), 0 2px 4px rgba(108, 92, 231, 0.05) !important;
+}
+input::placeholder, textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Action buttons shadows */
+button[type="submit"], .bg-gradient-to-r {
+  box-shadow: 0 8px 20px -6px rgba(108, 92, 231, 0.3) !important;
+  transition: all 0.2s ease !important;
+}
+button[type="submit"]:hover, .bg-gradient-to-r:hover {
+  box-shadow: 0 12px 24px -6px rgba(108, 92, 231, 0.45) !important;
+}
+
+/* Overriding borders */
+.border-white\/5 {
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+.border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Toast theme adjustment override helper */
+.go3958317564 {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid rgba(108, 92, 231, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Extra light adjustments for home section components */
+.border-t-2 {
+  border-top-color: rgba(0, 0, 0, 0.05) !important;
+}
+.divide-y {
+  border-color: rgba(0, 0, 0, 0.05) !important;
+}
+.divide-white\/5 {
+  border-color: rgba(0, 0, 0, 0.05) !important;
+}
+.bg-slate-900\/50 {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+}
+.text-teal-400 {
+  color: #0d9488 !important;
+}
+.text-\[\#00D2D3\] {
+  color: #0891b2 !important;
+}
+.text-\[\#9580f3\] {
+  color: #4f46e5 !important;
+}
