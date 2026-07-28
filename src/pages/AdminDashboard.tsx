@@ -270,7 +270,7 @@ const AdminDashboard = () => {
                             innerRadius={50}
                             paddingAngle={3}
                             strokeWidth={0}
-                            label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                            label={({ name, percent }: { name?: string; percent?: number }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
                           >
                             {typeChartData.map((_, index) => (
                               <Cell key={`type-${index}`} fill={COLORS[index % COLORS.length]} />
