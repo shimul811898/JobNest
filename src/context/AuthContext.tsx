@@ -10,6 +10,7 @@ interface AuthContextType {
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
   register: (name: string, email: string, password: string) => Promise<void>;
+  googleLogin: (credential: string) => Promise<void>;
   logout: () => void;
   demoLogin: (role: 'user' | 'admin') => Promise<void>;
 }
@@ -50,6 +51,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     toast.success('Account created successfully!');
   };
 
+  const googleLogin = async (credential: string) => {
+    const { data } = await api.post<AuthResponse>('/auth/google', { credential });
+    setToken(data.token);
+    setUser(data.user);
+    localStorage.setItem('jobnest_token', data.token);
+    localStorage.setItem('jobnest_user', JSON.stringify(data.user));
+    toast.success(`Welcome back, ${data.user.name}!`);
+  };
+
   const logout = () => {
     setToken(null);
     setUser(null);
@@ -73,6 +83,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       isAuthenticated: !!token && !!user,
       login,
       register,
+      googleLogin,
       logout,
       demoLogin,
     }}>

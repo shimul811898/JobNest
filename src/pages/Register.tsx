@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { GoogleLogin } from '@react-oauth/google';
 import { HiUser, HiEnvelope, HiLockClosed, HiEye, HiEyeSlash } from 'react-icons/hi2';
 import toast from 'react-hot-toast';
 
 const Register = () => {
-  const { register } = useAuth();
+  const { register, googleLogin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -42,6 +43,26 @@ const Register = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleGoogleSuccess = async (credentialResponse: any) => {
+    if (!credentialResponse.credential) {
+      toast.error('No credential received from Google');
+      return;
+    }
+    setLoading(true);
+    try {
+      await googleLogin(credentialResponse.credential);
+      navigate(redirectPath, { replace: true });
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || 'Google registration failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleError = () => {
+    toast.error('Google Sign Up was cancelled or encountered an error');
   };
 
   return (
@@ -143,6 +164,29 @@ const Register = () => {
             {loading ? 'Creating Account...' : 'Sign Up'}
           </button>
         </form>
+
+        {/* Google Sign In Section */}
+        <div className="space-y-3">
+          <div className="relative flex items-center py-1">
+            <div className="flex-grow border-t border-white/10"></div>
+            <span className="flex-shrink mx-3 text-slate-500 text-[11px] uppercase tracking-wider font-semibold">
+              Or sign up with
+            </span>
+            <div className="flex-grow border-t border-white/10"></div>
+          </div>
+
+          <div className="flex justify-center w-full">
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={handleGoogleError}
+              theme="filled_black"
+              shape="pill"
+              size="large"
+              text="signup_with"
+              width="100%"
+            />
+          </div>
+        </div>
 
         {/* Sign In Redirect */}
         <p className="text-center text-xs text-slate-400 mt-2">

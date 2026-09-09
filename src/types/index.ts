@@ -6,6 +6,7 @@ export interface User {
   avatar?: string;
   phone?: string;
   bio?: string;
+  authProvider?: 'local' | 'google';
   createdAt: string;
   updatedAt: string;
 }

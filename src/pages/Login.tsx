@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { GoogleLogin } from '@react-oauth/google';
 import { HiEnvelope, HiLockClosed, HiEye, HiEyeSlash, HiSparkles } from 'react-icons/hi2';
 import toast from 'react-hot-toast';
 
 const Login = () => {
-  const { login, demoLogin } = useAuth();
+  const { login, demoLogin, googleLogin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -32,6 +33,26 @@ const Login = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleGoogleSuccess = async (credentialResponse: any) => {
+    if (!credentialResponse.credential) {
+      toast.error('No credential received from Google');
+      return;
+    }
+    setLoading(true);
+    try {
+      await googleLogin(credentialResponse.credential);
+      navigate(redirectPath, { replace: true });
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || 'Google login failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleError = () => {
+    toast.error('Google Sign In was cancelled or encountered an error');
   };
 
   const handleDemoLogin = async (role: 'user' | 'admin') => {
@@ -122,6 +143,29 @@ const Login = () => {
             {loading ? 'Signing In...' : 'Sign In'}
           </button>
         </form>
+
+        {/* Google Sign In Section */}
+        <div className="space-y-3">
+          <div className="relative flex items-center py-1">
+            <div className="flex-grow border-t border-white/10"></div>
+            <span className="flex-shrink mx-3 text-slate-500 text-[11px] uppercase tracking-wider font-semibold">
+              Or continue with
+            </span>
+            <div className="flex-grow border-t border-white/10"></div>
+          </div>
+
+          <div className="flex justify-center w-full">
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={handleGoogleError}
+              theme="filled_black"
+              shape="pill"
+              size="large"
+              text="signin_with"
+              width="100%"
+            />
+          </div>
+        </div>
 
         {/* Demo Credentials Box */}
         <div className="border-t border-b border-white/5 py-4 space-y-3">
