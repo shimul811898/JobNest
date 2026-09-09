@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { HiUser, HiEnvelope, HiLockClosed, HiEye, HiEyeSlash } from 'react-icons/hi2';
-import { FaGoogle } from 'react-icons/fa';
-import { signIn as betterSignIn } from '../lib/auth-client';
 import toast from 'react-hot-toast';
 
 const Register = () => {
@@ -18,7 +16,6 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Capture intended destination if they were redirected to sign up
   const redirectPath = location.state?.from?.pathname || '/';
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -146,34 +143,6 @@ const Register = () => {
             {loading ? 'Creating Account...' : 'Sign Up'}
           </button>
         </form>
-
-        {/* Google Sign-Up */}
-        <div className="space-y-3">
-          <div className="relative flex items-center justify-center">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-white/5" />
-            </div>
-            <span className="relative px-3 bg-[#0f0f1a] text-[10px] text-slate-500 uppercase font-bold tracking-wider">Or sign up with</span>
-          </div>
-          <button
-            type="button"
-            disabled={loading}
-            onClick={async () => {
-              try {
-                // Converted to absolute URL format to fix the redirect_uri_mismatch error
-                await betterSignIn.social({ 
-                  provider: 'google', 
-                  callbackURL: `${window.location.origin}${redirectPath}` 
-                });
-              } catch {
-                toast.error('Google sign-up failed');
-              }
-            }}
-            className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/[0.08] text-xs font-semibold text-slate-200 transition-all focus:outline-none disabled:opacity-50"
-          >
-            <FaGoogle /> Sign up with Google
-          </button>
-        </div>
 
         {/* Sign In Redirect */}
         <p className="text-center text-xs text-slate-400 mt-2">

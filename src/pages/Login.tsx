@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { HiEnvelope, HiLockClosed, HiEye, HiEyeSlash, HiSparkles } from 'react-icons/hi2';
-import { FaGoogle } from 'react-icons/fa';
-import { signIn as betterSignIn } from '../lib/auth-client';
 import toast from 'react-hot-toast';
 
 const Login = () => {
@@ -146,37 +144,6 @@ const Login = () => {
             >
               <span>Employer Demo</span>
               <span className="text-[9px] text-[#9580f3]/70 font-normal">Post & Edit Access</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Social Logins */}
-        <div className="space-y-3">
-          <div className="relative flex items-center justify-center">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-white/5" />
-            </div>
-            <span className="relative px-3 bg-[#0f0f1a] text-[10px] text-slate-500 uppercase font-bold tracking-wider">Or continue with</span>
-          </div>
-
-          <div className="flex">
-            <button
-              type="button"
-              disabled={loading}
-              onClick={async () => {
-                try {
-                  // Converted to absolute URL format to fix the redirect_uri_mismatch error
-                  await betterSignIn.social({ 
-                    provider: 'google', 
-                    callbackURL: `${window.location.origin}${redirectPath}` 
-                  });
-                } catch {
-                  toast.error('Google sign-in failed');
-                }
-              }}
-              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/[0.08] text-xs font-semibold text-slate-200 transition-all focus:outline-none disabled:opacity-50"
-            >
-              <FaGoogle /> Sign in with Google
             </button>
           </div>
         </div>
