@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { GoogleLogin } from '@react-oauth/google';
-import { HiEnvelope, HiLockClosed, HiEye, HiEyeSlash, HiSparkles } from 'react-icons/hi2';
+import { HiEnvelope, HiLockClosed, HiEye, HiEyeSlash } from 'react-icons/hi2';
 import toast from 'react-hot-toast';
 
 const Login = () => {
-  const { login, demoLogin, googleLogin } = useAuth();
+  const { login, googleLogin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -55,18 +55,6 @@ const Login = () => {
     toast.error('Google Sign In was cancelled or encountered an error');
   };
 
-  const handleDemoLogin = async (role: 'user' | 'admin') => {
-    setLoading(true);
-    try {
-      await demoLogin(role);
-      navigate(redirectPath, { replace: true });
-    } catch (error: any) {
-      toast.error('Demo login failed. Is the API server running?');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-[#0f0f1a] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 relative overflow-hidden">
       {/* Background Glow */}
@@ -108,7 +96,7 @@ const Login = () => {
               <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Password</label>
               <a 
                 href="#" 
-                onClick={(e) => { e.preventDefault(); toast.error('Check instructions: use Demo Logins below!'); }} 
+                onClick={(e) => { e.preventDefault(); toast.error('Password reset is not configured. Please register a new account.'); }} 
                 className="text-[10px] font-semibold text-[#00D2D3] hover:underline"
               >
                 Forgot password?
@@ -164,31 +152,6 @@ const Login = () => {
               text="signin_with"
               width="100%"
             />
-          </div>
-        </div>
-
-        {/* Demo Credentials Box */}
-        <div className="border-t border-b border-white/5 py-4 space-y-3">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 text-center flex items-center justify-center gap-1">
-            <HiSparkles className="text-[#00D2D3]" /> Quick Demo Logins
-          </p>
-          <div className="grid grid-cols-2 gap-3">
-            <button
-              onClick={() => handleDemoLogin('user')}
-              disabled={loading}
-              className="py-2.5 px-3 rounded-xl bg-[#00D2D3]/10 hover:bg-[#00D2D3]/20 border border-[#00D2D3]/20 hover:border-[#00D2D3]/40 text-[#00D2D3] text-xs font-bold transition-all text-center flex flex-col justify-center gap-0.5 shrink-0"
-            >
-              <span>Job Seeker Demo</span>
-              <span className="text-[9px] text-[#00D2D3]/70 font-normal">Candidate Access</span>
-            </button>
-            <button
-              onClick={() => handleDemoLogin('admin')}
-              disabled={loading}
-              className="py-2.5 px-3 rounded-xl bg-[#6C5CE7]/10 hover:bg-[#6C5CE7]/20 border border-[#6C5CE7]/20 hover:border-[#6C5CE7]/40 text-[#9580f3] text-xs font-bold transition-all text-center flex flex-col justify-center gap-0.5 shrink-0"
-            >
-              <span>Employer Demo</span>
-              <span className="text-[9px] text-[#9580f3]/70 font-normal">Post & Edit Access</span>
-            </button>
           </div>
         </div>
 

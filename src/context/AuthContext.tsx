@@ -12,7 +12,6 @@ interface AuthContextType {
   register: (name: string, email: string, password: string) => Promise<void>;
   googleLogin: (credential: string) => Promise<void>;
   logout: () => void;
-  demoLogin: (role: 'user' | 'admin') => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -68,13 +67,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     toast.success('Logged out successfully');
   };
 
-  const demoLogin = async (role: 'user' | 'admin') => {
-    const credentials = role === 'admin'
-      ? { email: 'shimul181163@gmail.com', password: '12345678' }
-      : { email: 'user@jobnest.com', password: 'User@123' };
-    await login(credentials.email, credentials.password);
-  };
-
   return (
     <AuthContext.Provider value={{
       user,
@@ -85,7 +77,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       register,
       googleLogin,
       logout,
-      demoLogin,
     }}>
       {children}
     </AuthContext.Provider>
