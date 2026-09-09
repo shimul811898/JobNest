@@ -215,17 +215,17 @@ const AdminDashboard = () => {
                   ].map((stat, i) => (
                     <div
                       key={i}
-                      className="relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.03] backdrop-blur-sm p-6 group hover:border-white/10 transition-all"
+                      className="relative overflow-hidden rounded-2xl glass-card border border-white/10 p-6 group transition-all"
                     >
                       <div className="absolute top-0 right-0 w-24 h-24 rounded-full blur-3xl opacity-20" style={{ background: stat.color }} />
                       <div className="flex items-center justify-between mb-4">
-                        <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">{stat.label}</span>
+                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">{stat.label}</span>
                         <div className="w-10 h-10 rounded-xl flex items-center justify-center text-lg" style={{ background: `${stat.color}20`, color: stat.color }}>
                           {stat.icon}
                         </div>
                       </div>
                       <div className="text-4xl font-extrabold text-white font-heading">{stat.value}</div>
-                      <p className="text-xs text-slate-500 mt-1">{stat.sub}</p>
+                      <p className="text-xs text-slate-400 mt-1">{stat.sub}</p>
                     </div>
                   ))}
                 </div>
@@ -233,16 +233,16 @@ const AdminDashboard = () => {
                 {/* Charts Row */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {/* Category Distribution */}
-                  <div className="rounded-2xl border border-white/5 bg-white/[0.03] backdrop-blur-sm p-6">
-                    <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Jobs by Category</h3>
+                  <div className="rounded-2xl glass-card border border-white/10 p-6">
+                    <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider mb-4">Jobs by Category</h3>
                     <div className="h-64">
                       <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={categoryChartData}>
                           <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} angle={-25} textAnchor="end" height={60} />
                           <YAxis allowDecimals={false} tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
                           <Tooltip
-                            contentStyle={{ background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', fontSize: '12px', color: '#e2e8f0' }}
-                            labelStyle={{ fontWeight: 'bold', color: '#fff' }}
+                            contentStyle={{ background: '#121324', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '12px', fontSize: '12px', color: '#e2e8f0', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}
+                            labelStyle={{ fontWeight: 'bold', color: '#00D2D3' }}
                           />
                           <Bar dataKey="count" radius={[6, 6, 0, 0]}>
                             {categoryChartData.map((_, index) => (
@@ -255,8 +255,8 @@ const AdminDashboard = () => {
                   </div>
 
                   {/* Type Distribution */}
-                  <div className="rounded-2xl border border-white/5 bg-white/[0.03] backdrop-blur-sm p-6">
-                    <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Jobs by Type</h3>
+                  <div className="rounded-2xl glass-card border border-white/10 p-6">
+                    <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider mb-4">Jobs by Type</h3>
                     <div className="h-64 flex items-center justify-center">
                       <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
@@ -277,7 +277,7 @@ const AdminDashboard = () => {
                             ))}
                           </Pie>
                           <Tooltip
-                            contentStyle={{ background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', fontSize: '12px', color: '#e2e8f0' }}
+                            contentStyle={{ background: '#121324', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '12px', fontSize: '12px', color: '#e2e8f0', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}
                           />
                         </PieChart>
                       </ResponsiveContainer>
@@ -336,11 +336,11 @@ const AdminDashboard = () => {
                 <div className="w-10 h-10 border-4 border-[#6C5CE7] border-t-transparent rounded-full animate-spin" />
               </div>
             ) : (
-              <div className="rounded-2xl border border-white/5 bg-white/[0.03] backdrop-blur-sm overflow-hidden">
+              <div className="rounded-2xl glass-card border border-white/10 overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
-                      <tr className="border-b border-white/5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                      <tr className="border-b border-white/10 text-[11px] font-bold uppercase tracking-wider text-slate-400 bg-white/5">
                         <th className="py-4 px-6">Job</th>
                         <th className="py-4 px-6">Category</th>
                         <th className="py-4 px-6">Type</th>
@@ -446,11 +446,11 @@ const AdminDashboard = () => {
                 <div className="w-10 h-10 border-4 border-[#6C5CE7] border-t-transparent rounded-full animate-spin" />
               </div>
             ) : (
-              <div className="rounded-2xl border border-white/5 bg-white/[0.03] backdrop-blur-sm overflow-hidden">
+              <div className="rounded-2xl glass-card border border-white/10 overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
-                      <tr className="border-b border-white/5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                      <tr className="border-b border-white/10 text-[11px] font-bold uppercase tracking-wider text-slate-400 bg-white/5">
                         <th className="py-4 px-6">User</th>
                         <th className="py-4 px-6">Email</th>
                         <th className="py-4 px-6">Role</th>
@@ -529,11 +529,11 @@ const AdminDashboard = () => {
                 <div className="w-10 h-10 border-4 border-[#6C5CE7] border-t-transparent rounded-full animate-spin" />
               </div>
             ) : (
-              <div className="rounded-2xl border border-white/5 bg-white/[0.03] backdrop-blur-sm overflow-hidden">
+              <div className="rounded-2xl glass-card border border-white/10 overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
-                      <tr className="border-b border-white/5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                      <tr className="border-b border-white/10 text-[11px] font-bold uppercase tracking-wider text-slate-400 bg-white/5">
                         <th className="py-4 px-6">Applicant</th>
                         <th className="py-4 px-6">Job Applied</th>
                         <th className="py-4 px-6">Date</th>

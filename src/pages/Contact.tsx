@@ -41,20 +41,20 @@ const Contact = () => {
               { title: 'Call Our Helpline', text: '+1 (555) 123-4567 (Mon-Fri, 9am - 6pm PST)', icon: <HiPhone className="text-2xl text-[#6C5CE7]" /> },
               { title: 'Email Support', text: 'support@jobnest.com / sales@jobnest.com', icon: <HiEnvelope className="text-2xl text-[#00D2D3]" /> }
             ].map((card, idx) => (
-              <div key={idx} className="p-6 rounded-2xl glass border border-white/5 flex gap-4 items-start hover:bg-white/[0.02] transition-colors">
+              <div key={idx} className="p-6 rounded-2xl glass-card border border-white/10 flex gap-4 items-start">
                 <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
                   {card.icon}
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-slate-200 font-heading mb-1">{card.title}</h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">{card.text}</p>
+                  <h3 className="text-sm font-bold text-white font-heading mb-1">{card.title}</h3>
+                  <p className="text-xs text-slate-300 leading-relaxed">{card.text}</p>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Form */}
-          <div className="lg:col-span-2 p-8 rounded-2xl glass border border-white/5">
+          <div className="lg:col-span-2 p-8 rounded-2xl glass-card border border-white/10">
             {submitted ? (
               <div className="h-full flex flex-col items-center justify-center text-center py-12 space-y-4">
                 <HiCheckCircle className="text-5xl text-[#00D2D3] animate-bounce" />

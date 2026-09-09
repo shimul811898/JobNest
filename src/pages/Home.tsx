@@ -134,21 +134,21 @@ const Home = () => {
       </section>
 
       {/* SECTION 2: STATISTICS SECTION */}
-      <section className="py-12 bg-slate-50/60 border-b border-slate-100">
+      <section className="py-12 border-b border-white/10 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
               { label: 'Active Postings', value: stats?.totalJobs || 24, suffix: '+', icon: <HiBriefcase className="text-[#00D2D3] mx-auto text-xl mb-1.5" /> },
-              { label: 'Verified Employers', value: stats?.totalCompanies || 20, suffix: '+', icon: <HiBuildingOffice2 className="text-[#6C5CE7] mx-auto text-xl mb-1.5" /> },
+              { label: 'Verified Employers', value: stats?.totalCompanies || 20, suffix: '+', icon: <HiBuildingOffice2 className="text-[#a29bfe] mx-auto text-xl mb-1.5" /> },
               { label: 'Success Placement', value: 94, suffix: '%', icon: <HiArrowTrendingUp className="text-[#00D2D3] mx-auto text-xl mb-1.5" /> },
-              { label: 'Active Talents', value: stats?.totalUsers || 2, suffix: 'k', icon: <HiUserGroup className="text-[#6C5CE7] mx-auto text-xl mb-1.5" /> },
+              { label: 'Active Talents', value: stats?.totalUsers || 2, suffix: 'k', icon: <HiUserGroup className="text-[#a29bfe] mx-auto text-xl mb-1.5" /> },
             ].map((stat, i) => (
-              <div key={i} className="p-4 glass rounded-2xl border border-slate-100 flex flex-col justify-center bg-white shadow-sm">
+              <div key={i} className="p-5 glass-card rounded-2xl border border-white/10 flex flex-col justify-center shadow-lg hover:border-[#6C5CE7]/40 transition-all">
                 {stat.icon}
-                <span className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading tracking-tight">
+                <span className="text-2xl sm:text-3xl font-extrabold text-white font-heading tracking-tight">
                   {stat.value}{stat.suffix}
                 </span>
-                <span className="text-xs text-slate-500 mt-1">{stat.label}</span>
+                <span className="text-xs text-slate-400 mt-1 font-medium">{stat.label}</span>
               </div>
             ))}
           </div>
@@ -156,10 +156,10 @@ const Home = () => {
       </section>
 
       {/* SECTION 3: POPULAR CATEGORIES */}
-      <section className="py-20 border-b border-white/5">
+      <section className="py-20 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold font-heading text-slate-100">Popular Categories</h2>
+            <h2 className="text-3xl font-bold font-heading text-white">Popular Categories</h2>
             <p className="text-slate-400 text-sm mt-2">Explore available job listings grouped by functional industry domains.</p>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
@@ -167,13 +167,13 @@ const Home = () => {
               <Link
                 key={index}
                 to={`/jobs?category=${cat.name}`}
-                className="flex flex-col items-center justify-center p-6 rounded-2xl glass hover:bg-white/[0.04] border border-white/5 hover:border-[#6C5CE7]/30 transition-all duration-200 text-center group"
+                className="flex flex-col items-center justify-center p-6 rounded-2xl glass-card border border-white/10 hover:border-[#00D2D3]/40 transition-all duration-300 text-center group"
               >
                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform duration-200 group-hover:scale-110 border ${cat.color}`}>
                   {cat.icon}
                 </div>
                 <h3 className="text-sm font-semibold text-slate-200 group-hover:text-white transition-colors font-heading mb-1">{cat.name}</h3>
-                <span className="text-xs text-slate-500">{cat.count} listings</span>
+                <span className="text-xs text-slate-400">{cat.count} listings</span>
               </Link>
             ))}
           </div>
@@ -181,11 +181,11 @@ const Home = () => {
       </section>
 
       {/* SECTION 4: FEATURED JOBS */}
-      <section className="py-20 border-b border-slate-100 bg-slate-50/40">
+      <section className="py-20 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12 gap-4">
             <div>
-              <h2 className="text-3xl font-bold font-heading text-slate-100">Featured Job Openings</h2>
+              <h2 className="text-3xl font-bold font-heading text-white">Featured Job Openings</h2>
               <p className="text-slate-400 text-sm mt-1">Apply now to premium, verified job listings matching current talent needs.</p>
             </div>
             <Link
@@ -200,7 +200,7 @@ const Home = () => {
             {isLoading ? (
               Array.from({ length: 4 }).map((_, idx) => <SkeletonCard key={idx} />)
             ) : featuredJobs.length === 0 ? (
-              <div className="col-span-full py-12 text-center text-slate-500">
+              <div className="col-span-full py-12 text-center text-slate-400">
                 No featured jobs available.
               </div>
             ) : (
@@ -211,25 +211,25 @@ const Home = () => {
       </section>
 
       {/* SECTION 5: HOW IT WORKS */}
-      <section className="py-20 border-b border-white/5">
+      <section className="py-20 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold font-heading text-slate-100">How It Works</h2>
+            <h2 className="text-3xl font-bold font-heading text-white">How It Works</h2>
             <p className="text-slate-400 text-sm mt-2">Get hired in three easy steps with our streamlined recruitment system.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 relative">
             {[
-              { step: '01', title: 'Create Account', text: 'Register as a Candidate or Employer. Flesh out your credentials, skills, or hiring brand logs.', bg: 'bg-[#6C5CE7]/10 border-[#6C5CE7]/20 text-[#6C5CE7]' },
-              { step: '02', title: 'Apply or Post Jobs', text: 'Search through curated listings with precise filters, or post job needs using our form builder.', bg: 'bg-[#00D2D3]/10 border-[#00D2D3]/20 text-[#00D2D3]' },
-              { step: '03', title: 'Succeed & Recruit', text: 'Submit applications with cover letters and resume logs, or review applicants and hire top talents.', bg: 'bg-[#FD7272]/10 border-[#FD7272]/20 text-[#FD7272]' },
+              { step: '01', title: 'Create Account', text: 'Register as a Candidate or Employer. Flesh out your credentials, skills, or hiring brand logs.', bg: 'bg-[#6C5CE7]/15 border-[#6C5CE7]/30 text-[#a29bfe]' },
+              { step: '02', title: 'Apply or Post Jobs', text: 'Search through curated listings with precise filters, or post job needs using our form builder.', bg: 'bg-[#00D2D3]/15 border-[#00D2D3]/30 text-[#00D2D3]' },
+              { step: '03', title: 'Succeed & Recruit', text: 'Submit applications with cover letters and resume logs, or review applicants and hire top talents.', bg: 'bg-[#FD7272]/15 border-[#FD7272]/30 text-[#FD7272]' },
             ].map((item, idx) => (
-              <div key={idx} className="flex flex-col items-center text-center p-8 rounded-2xl glass border border-white/5 relative z-10">
-                <span className={`w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg border font-heading mb-6 ${item.bg}`}>
+              <div key={idx} className="flex flex-col items-center text-center p-8 rounded-2xl glass-card border border-white/10 relative z-10 hover:border-[#6C5CE7]/40 transition-all">
+                <span className={`w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg border font-heading mb-6 shadow-md ${item.bg}`}>
                   {item.step}
                 </span>
-                <h3 className="text-lg font-bold text-slate-200 mb-2 font-heading">{item.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">{item.text}</p>
+                <h3 className="text-lg font-bold text-white mb-2 font-heading">{item.title}</h3>
+                <p className="text-slate-300 text-sm leading-relaxed">{item.text}</p>
               </div>
             ))}
           </div>
@@ -237,16 +237,16 @@ const Home = () => {
       </section>
 
       {/* SECTION 6: TESTIMONIALS SECTION */}
-      <section className="py-20 border-b border-slate-100 bg-slate-50/40">
+      <section className="py-20 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold font-heading text-slate-100">Reviews & Success Stories</h2>
+            <h2 className="text-3xl font-bold font-heading text-white">Reviews & Success Stories</h2>
             <p className="text-slate-400 text-sm mt-2">Hear directly from job seekers and employers using our automated workspace.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((test, index) => (
-              <div key={index} className="p-6 rounded-2xl glass border border-white/5 flex flex-col h-full">
+              <div key={index} className="p-6 rounded-2xl glass-card border border-white/10 flex flex-col h-full hover:border-[#00D2D3]/30 transition-all">
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: test.rating }).map((_, i) => (
                     <span key={i} className="text-[#00D2D3] text-lg">★</span>
@@ -255,14 +255,14 @@ const Home = () => {
                 <p className="text-slate-300 text-sm leading-relaxed italic mb-6 flex-1">
                   "{test.quote}"
                 </p>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 border-t border-white/5 pt-4">
                   <img
                     src={test.avatar}
                     alt={test.author}
-                    className="w-10 h-10 rounded-full object-cover border border-white/10"
+                    className="w-10 h-10 rounded-full object-cover border border-white/20"
                   />
                   <div>
-                    <h4 className="text-sm font-bold text-slate-200 font-heading">{test.author}</h4>
+                    <h4 className="text-sm font-bold text-white font-heading">{test.author}</h4>
                     <p className="text-xs text-slate-400">{test.role}</p>
                   </div>
                 </div>
@@ -275,13 +275,12 @@ const Home = () => {
       {/* SECTION 7: CTA / NEWSLETTER */}
       <section className="py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-gradient-to-tr from-[#6C5CE7]/10 via-[#00D2D3]/5 to-transparent border border-slate-100 p-10 md:p-14 text-center space-y-6 relative overflow-hidden">
-            <div className="absolute inset-0 bg-white/40 backdrop-blur-sm -z-10" />
-            <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mx-auto text-white text-2xl shadow-sm">
+          <div className="rounded-3xl glass-card border border-white/10 bg-gradient-to-tr from-[#6C5CE7]/15 via-[#00D2D3]/10 to-transparent p-10 md:p-14 text-center space-y-6 relative overflow-hidden shadow-2xl">
+            <div className="w-14 h-14 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center mx-auto text-white text-2xl shadow-lg">
               <HiEnvelopeOpen className="text-[#00D2D3]" />
             </div>
-            <h2 className="text-3xl font-bold font-heading text-slate-100">Never Miss a Career Match</h2>
-            <p className="text-slate-400 text-sm max-w-md mx-auto leading-relaxed">
+            <h2 className="text-3xl font-bold font-heading text-white">Never Miss a Career Match</h2>
+            <p className="text-slate-300 text-sm max-w-md mx-auto leading-relaxed">
               Subscribe to our weekly job alerts and receive recommendations matching your search parameters straight to your inbox.
             </p>
             <form onSubmit={(e) => { e.preventDefault(); setSearch(''); }} className="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
@@ -289,11 +288,11 @@ const Home = () => {
                 type="email"
                 required
                 placeholder="Enter your email address..."
-                className="flex-1 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-200 placeholder-slate-500 text-sm outline-none focus:border-[#6C5CE7]/40"
+                className="flex-1 px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white placeholder-slate-400 text-sm outline-none focus:border-[#00D2D3]"
               />
               <button
                 type="submit"
-                className="bg-[#6C5CE7] hover:bg-[#5a3fd9] text-white py-3 px-6 rounded-xl text-sm font-semibold transition-all duration-150 shadow-md shadow-[#6C5CE7]/10"
+                className="bg-gradient-to-r from-[#6C5CE7] to-[#00D2D3] text-white py-3 px-6 rounded-xl text-sm font-semibold hover:opacity-95 shadow-md shadow-[#6C5CE7]/20 transition-all duration-150"
               >
                 Subscribe
               </button>

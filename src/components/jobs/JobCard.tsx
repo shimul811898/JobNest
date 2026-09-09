@@ -22,21 +22,24 @@ const JobCard = ({ job }: JobCardProps) => {
   const typeColor = () => {
     switch (job.type) {
       case 'Remote':
-        return 'bg-emerald-50 text-emerald-700 border-emerald-200/60';
+        return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30 shadow-[0_0_12px_rgba(16,185,129,0.15)]';
       case 'Hybrid':
-        return 'bg-amber-50 text-amber-700 border-amber-200/60';
+        return 'bg-amber-500/10 text-amber-400 border-amber-500/30 shadow-[0_0_12px_rgba(245,158,11,0.15)]';
       default:
-        return 'bg-indigo-50 text-indigo-700 border-indigo-200/60';
+        return 'bg-indigo-500/10 text-indigo-400 border-indigo-500/30 shadow-[0_0_12px_rgba(99,102,241,0.15)]';
     }
   };
 
-  const defaultLogo = `https://ui-avatars.com/api/?name=${encodeURIComponent(job.company)}&background=e8e4fd&color=6C5CE7&bold=true&size=128`;
+  const defaultLogo = `https://ui-avatars.com/api/?name=${encodeURIComponent(job.company)}&background=1e1b4b&color=a5b4fc&bold=true&size=128`;
 
   return (
-    <div className="flex flex-col h-full rounded-2xl glass border border-slate-100 p-6 card-hover hover:shadow-xl transition-all duration-300 bg-white">
+    <div className="flex flex-col h-full rounded-2xl glass-card border border-white/10 p-6 card-hover group transition-all duration-300 relative overflow-hidden">
+      {/* Subtle ambient accent glow */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-[#6C5CE7]/10 rounded-full blur-2xl pointer-events-none -mr-10 -mt-10 group-hover:bg-[#00D2D3]/15 transition-all duration-500" />
+
       {/* Header Info */}
-      <div className="flex items-start justify-between gap-4 mb-4.5">
-        <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center p-1.5 overflow-hidden shrink-0 shadow-inner">
+      <div className="flex items-start justify-between gap-4 mb-4.5 relative z-10">
+        <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-1.5 overflow-hidden shrink-0 shadow-md group-hover:border-[#6C5CE7]/40 transition-colors">
           <img
             src={logoError || !job.companyLogo ? defaultLogo : job.companyLogo}
             alt={job.company}
@@ -49,35 +52,35 @@ const JobCard = ({ job }: JobCardProps) => {
           <span className={`text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full border ${typeColor()}`}>
             {job.type}
           </span>
-          <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-md">
+          <span className="text-[10px] font-semibold text-slate-300 bg-white/5 border border-white/10 px-2.5 py-0.5 rounded-md">
             {job.category}
           </span>
         </div>
       </div>
 
       {/* Title & Company */}
-      <div className="mb-3.5 flex-1">
-        <h3 className="text-base font-extrabold text-slate-900 font-heading hover:text-[#6C5CE7] transition-colors leading-snug line-clamp-1 mb-1">
+      <div className="mb-3.5 flex-1 relative z-10">
+        <h3 className="text-base font-extrabold text-white font-heading group-hover:text-[#00D2D3] transition-colors leading-snug line-clamp-1 mb-1">
           <Link to={`/jobs/${job._id}`}>{job.title}</Link>
         </h3>
-        <p className="text-xs text-[#6C5CE7] font-bold tracking-wide uppercase">{job.company}</p>
+        <p className="text-xs text-[#a29bfe] font-bold tracking-wide uppercase">{job.company}</p>
       </div>
 
       {/* Description */}
-      <p className="text-slate-500 text-xs leading-relaxed mb-4 line-clamp-2">
+      <p className="text-slate-300 text-xs leading-relaxed mb-4 line-clamp-2 relative z-10">
         {job.shortDescription}
       </p>
 
       {/* Skills Badges (if available) */}
       {job.skills && job.skills.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 mb-4.5">
+        <div className="flex flex-wrap gap-1.5 mb-4.5 relative z-10">
           {job.skills.slice(0, 3).map((skill, idx) => (
-            <span key={idx} className="text-[9px] font-bold text-slate-600 bg-slate-50 border border-slate-100 px-2 py-0.5 rounded">
+            <span key={idx} className="text-[10px] font-medium text-slate-300 bg-white/5 border border-white/10 px-2.5 py-0.5 rounded-md">
               {skill}
             </span>
           ))}
           {job.skills.length > 3 && (
-            <span className="text-[9px] font-bold text-slate-400 px-1 py-0.5">
+            <span className="text-[10px] font-medium text-slate-400 px-1 py-0.5">
               +{job.skills.length - 3} more
             </span>
           )}
@@ -85,21 +88,21 @@ const JobCard = ({ job }: JobCardProps) => {
       )}
 
       {/* Meta Info Grid */}
-      <div className="grid grid-cols-2 gap-y-3 gap-x-2 border-t border-slate-100 pt-4 mb-5">
-        <div className="flex items-center text-slate-500 text-[11px] gap-1.5 min-w-0">
+      <div className="grid grid-cols-2 gap-y-3 gap-x-2 border-t border-white/10 pt-4 mb-5 relative z-10">
+        <div className="flex items-center text-slate-300 text-[11px] gap-1.5 min-w-0">
           <HiMapPin className="text-[#00D2D3] shrink-0 text-sm" />
           <span className="truncate">{job.location}</span>
         </div>
-        <div className="flex items-center text-slate-500 text-[11px] gap-1.5 min-w-0">
-          <HiCurrencyDollar className="text-[#6C5CE7] shrink-0 text-sm" />
-          <span className="truncate font-bold text-slate-700">{formattedSalary()}</span>
+        <div className="flex items-center text-slate-300 text-[11px] gap-1.5 min-w-0">
+          <HiCurrencyDollar className="text-[#a29bfe] shrink-0 text-sm" />
+          <span className="truncate font-bold text-white">{formattedSalary()}</span>
         </div>
-        <div className="flex items-center text-slate-500 text-[11px] gap-1.5 min-w-0">
+        <div className="flex items-center text-slate-300 text-[11px] gap-1.5 min-w-0">
           <HiBriefcase className="text-[#00D2D3] shrink-0 text-sm" />
           <span className="truncate">{job.experience}</span>
         </div>
-        <div className="flex items-center text-slate-500 text-[11px] gap-1.5 min-w-0">
-          <HiCalendar className="text-[#6C5CE7] shrink-0 text-sm" />
+        <div className="flex items-center text-slate-300 text-[11px] gap-1.5 min-w-0">
+          <HiCalendar className="text-[#a29bfe] shrink-0 text-sm" />
           <span className="truncate">
             {job.createdAt ? new Date(job.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : 'Recent'}
           </span>
@@ -109,7 +112,7 @@ const JobCard = ({ job }: JobCardProps) => {
       {/* Action CTA */}
       <Link
         to={`/jobs/${job._id}`}
-        className="w-full text-center py-2.5 px-4 rounded-xl text-xs font-extrabold bg-[#6C5CE7]/10 hover:bg-[#6C5CE7] text-[#6C5CE7] hover:text-white transition-all duration-300 block shadow-sm"
+        className="w-full text-center py-2.5 px-4 rounded-xl text-xs font-extrabold bg-gradient-to-r from-[#6C5CE7]/20 to-[#00D2D3]/20 hover:from-[#6C5CE7] hover:to-[#00D2D3] text-white border border-white/10 hover:border-transparent transition-all duration-300 block shadow-md hover:shadow-[#6C5CE7]/30 relative z-10"
       >
         View Details
       </Link>

@@ -71,15 +71,15 @@ const Register = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-[#6C5CE7]/10 via-transparent to-transparent opacity-60 pointer-events-none" />
 
       {/* Registration Card Container */}
-      <div className="max-w-md w-full p-8 rounded-3xl glass border border-white/5 space-y-6 shadow-2xl relative z-10">
+      <div className="max-w-md w-full p-8 rounded-3xl glass-card border border-white/10 space-y-6 shadow-2xl relative z-10">
         
         {/* Title */}
         <div className="text-center space-y-2">
           <Link to="/" className="inline-flex items-center space-x-1.5 mb-2 font-heading">
             <span className="text-2xl font-black tracking-tight gradient-text">JobNest</span>
           </Link>
-          <h2 className="text-2xl font-bold font-heading text-slate-100">Create Account</h2>
-          <p className="text-xs text-slate-400">Join thousands of talents searching and hiring on JobNest.</p>
+          <h2 className="text-2xl font-bold font-heading text-white">Create Account</h2>
+          <p className="text-xs text-slate-300">Join thousands of talents searching and hiring on JobNest.</p>
         </div>
 
         {/* Form */}

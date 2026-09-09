@@ -93,9 +93,9 @@ const AddJob = () => {
         </button>
 
         {/* Card wrapper */}
-        <div className="p-8 rounded-3xl glass border border-white/5 space-y-8 shadow-xl">
-          <div className="border-b border-white/5 pb-5">
-            <h1 className="text-2xl font-black font-heading text-slate-100 flex items-center gap-2">
+        <div className="p-8 rounded-3xl glass-card border border-white/10 space-y-8 shadow-xl">
+          <div className="border-b border-white/10 pb-5">
+            <h1 className="text-2xl font-black font-heading text-white flex items-center gap-2">
               <HiPlus className="text-[#00D2D3]" /> Post a New Job
             </h1>
             <p className="text-xs text-slate-400 mt-1">Specify detailed career requirements to connect with verified candidates.</p>
@@ -157,38 +157,38 @@ const AddJob = () => {
             {/* Row 3: Category, Type & Experience */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-wider text-slate-400">Category *</label>
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-300">Category *</label>
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value as JobCategory)}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-3 text-sm text-slate-300 outline-none focus:border-[#6C5CE7]/40"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-3 text-sm text-slate-200 outline-none focus:border-[#00D2D3]"
                 >
                   {categories.map((cat) => (
-                    <option key={cat} value={cat} className="bg-[#0f0f1a]">{cat}</option>
+                    <option key={cat} value={cat} className="bg-[#121324] text-white">{cat}</option>
                   ))}
                 </select>
               </div>
               <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-wider text-slate-400">Work Mode *</label>
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-300">Work Mode *</label>
                 <select
                   value={type}
                   onChange={(e) => setType(e.target.value as JobType)}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-3 text-sm text-slate-300 outline-none focus:border-[#6C5CE7]/40"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-3 text-sm text-slate-200 outline-none focus:border-[#00D2D3]"
                 >
                   {types.map((t) => (
-                    <option key={t} value={t} className="bg-[#0f0f1a]">{t}</option>
+                    <option key={t} value={t} className="bg-[#121324] text-white">{t}</option>
                   ))}
                 </select>
               </div>
               <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-wider text-slate-400">Experience *</label>
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-300">Experience *</label>
                 <select
                   value={experience}
                   onChange={(e) => setExperience(e.target.value as ExperienceLevel)}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-3 text-sm text-slate-300 outline-none focus:border-[#6C5CE7]/40"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-3 text-sm text-slate-200 outline-none focus:border-[#00D2D3]"
                 >
                   {experiences.map((exp) => (
-                    <option key={exp} value={exp} className="bg-[#0f0f1a]">{exp}</option>
+                    <option key={exp} value={exp} className="bg-[#121324] text-white">{exp}</option>
                   ))}
                 </select>
               </div>
