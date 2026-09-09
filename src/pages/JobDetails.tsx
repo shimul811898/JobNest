@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useJob, useRelatedJobs } from '../hooks/useJobs';
 import { useAuth } from '../context/AuthContext';
@@ -10,10 +10,10 @@ import {
   HiCurrencyDollar, 
   HiBriefcase, 
   HiCalendar, 
-  HiClock,
-  HiChevronRight,
-  HiPaperAirplane,
-  HiBriefcase as JobIcon
+  HiClock, 
+  HiChevronRight, 
+  HiPaperAirplane, 
+  HiBriefcase as JobIcon 
 } from 'react-icons/hi2';
 
 const JobDetails = () => {
@@ -29,6 +29,21 @@ const JobDetails = () => {
 
   const { data: job, isLoading, isError } = useJob(id || '');
   const { data: relatedJobs } = useRelatedJobs(id || '');
+
+  // Check if current user already applied for this job
+  useEffect(() => {
+    if (isAuthenticated && id) {
+      api.get('/applications/my')
+        .then(({ data }) => {
+          const hasApplied = data?.some((app: any) => {
+            const appId = typeof app.jobId === 'object' ? app.jobId?._id : app.jobId;
+            return appId === id;
+          });
+          if (hasApplied) setAlreadyApplied(true);
+        })
+        .catch(() => {});
+    }
+  }, [isAuthenticated, id]);
 
   const handleApplySubmit = async (e: React.FormEvent) => {
     e.preventDefault();

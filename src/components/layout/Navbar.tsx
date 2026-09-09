@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { AnimatePresence, motion } from 'framer-motion';
-import { HiBriefcase, HiBars3, HiXMark, HiArrowRightOnRectangle, HiPlus, HiSquares2X2, HiShieldCheck } from 'react-icons/hi2';
+import { HiBriefcase, HiBars3, HiXMark, HiArrowRightOnRectangle, HiPlus, HiSquares2X2, HiShieldCheck, HiDocumentCheck } from 'react-icons/hi2';
 
 const Navbar = () => {
   const { user, logout, isAuthenticated } = useAuth();
@@ -99,6 +99,14 @@ const Navbar = () => {
                   </Link>
                 )}
                 <Link
+                  to="/applications/my"
+                  className={`text-sm font-medium transition-colors py-2 flex items-center gap-1 ${
+                    location.pathname === '/applications/my' ? 'text-[#00D2D3]' : 'text-slate-300 hover:text-white'
+                  }`}
+                >
+                  <HiDocumentCheck className="text-base" /> My Applied Jobs
+                </Link>
+                <Link
                   to="/jobs/manage"
                   className={`text-sm font-medium transition-colors py-2 flex items-center gap-1 ${
                     location.pathname === '/jobs/manage' ? 'text-[#00D2D3]' : 'text-slate-300 hover:text-white'
@@ -151,6 +159,12 @@ const Navbar = () => {
                           {user.role}
                         </span>
                       </div>
+                      <Link
+                        to="/applications/my"
+                        className="flex items-center gap-2 px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
+                      >
+                        <HiDocumentCheck /> My Applied Jobs
+                      </Link>
                       {user?.role === 'admin' && (
                         <>
                           <Link
@@ -236,6 +250,19 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
+
+              {isAuthenticated && (
+                <Link
+                  to="/applications/my"
+                  className={`block px-4 py-2.5 rounded-xl text-base font-medium transition-all ${
+                    location.pathname === '/applications/my'
+                      ? 'bg-white/10 text-white border-l-4 border-[#00D2D3]'
+                      : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  📄 My Applied Jobs
+                </Link>
+              )}
 
               {isAuthenticated && user?.role === 'admin' && (
                 <>

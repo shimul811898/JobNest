@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import AddJob from './pages/AddJob';
 import ManageJobs from './pages/ManageJobs';
+import MyApplications from './pages/MyApplications';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import AdminDashboard from './pages/AdminDashboard';
@@ -48,6 +49,11 @@ function App() {
                 <Route path="/jobs/manage" element={
                   <ProtectedRoute>
                     <ManageJobs />
+                  </ProtectedRoute>
+                } />
+                <Route path="/applications/my" element={
+                  <ProtectedRoute>
+                    <MyApplications />
                   </ProtectedRoute>
                 } />
                 <Route path="/about" element={<About />} />
