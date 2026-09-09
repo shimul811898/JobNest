@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { GoogleLogin } from '@react-oauth/google';
+import { useGoogleLogin } from '@react-oauth/google';
 import { HiUser, HiEnvelope, HiLockClosed, HiEye, HiEyeSlash } from 'react-icons/hi2';
+import { FcGoogle } from 'react-icons/fc';
 import toast from 'react-hot-toast';
 
 const Register = () => {
@@ -45,25 +46,22 @@ const Register = () => {
     }
   };
 
-  const handleGoogleSuccess = async (credentialResponse: any) => {
-    if (!credentialResponse.credential) {
-      toast.error('No credential received from Google');
-      return;
-    }
-    setLoading(true);
-    try {
-      await googleLogin(credentialResponse.credential);
-      navigate(redirectPath, { replace: true });
-    } catch (error: any) {
-      toast.error(error.response?.data?.message || 'Google registration failed');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleGoogleError = () => {
-    toast.error('Google Sign Up was cancelled or encountered an error');
-  };
+  const handleCustomGoogleRegister = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      setLoading(true);
+      try {
+        await googleLogin({ accessToken: tokenResponse.access_token });
+        navigate(redirectPath, { replace: true });
+      } catch (error: any) {
+        toast.error(error.response?.data?.message || 'Google registration failed');
+      } finally {
+        setLoading(false);
+      }
+    },
+    onError: () => {
+      toast.error('Google Sign Up was cancelled or encountered an error');
+    },
+  });
 
   return (
     <div className="min-h-screen bg-[#0f0f1a] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 relative overflow-hidden">
@@ -175,17 +173,15 @@ const Register = () => {
             <div className="flex-grow border-t border-white/10"></div>
           </div>
 
-          <div className="flex justify-center w-full">
-            <GoogleLogin
-              onSuccess={handleGoogleSuccess}
-              onError={handleGoogleError}
-              theme="filled_black"
-              shape="pill"
-              size="large"
-              text="signup_with"
-              width="100%"
-            />
-          </div>
+          <button
+            type="button"
+            onClick={() => handleCustomGoogleRegister()}
+            disabled={loading}
+            className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white font-medium text-sm transition-all duration-200 shadow-md shadow-black/20 group cursor-pointer"
+          >
+            <FcGoogle className="text-xl group-hover:scale-110 transition-transform" />
+            <span>Continue with Google</span>
+          </button>
         </div>
 
         {/* Sign In Redirect */}
