@@ -69,15 +69,15 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`text-sm font-medium transition-colors relative py-2 ${
-                    isActive ? 'text-[#00D2D3]' : 'text-slate-300 hover:text-white'
+                  className={`text-sm font-semibold transition-colors relative py-2 ${
+                    isActive ? 'text-[#6C5CE7]' : 'text-slate-600 hover:text-[#6C5CE7]'
                   }`}
                 >
                   {link.name}
                   {isActive && (
                     <motion.div
                       layoutId="activeNav"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00D2D3] rounded-full"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#6C5CE7] to-[#00D2D3] rounded-full"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -91,36 +91,36 @@ const Navbar = () => {
                 {user?.role === 'admin' && (
                   <Link
                     to="/admin"
-                    className={`text-sm font-medium transition-colors py-2 flex items-center gap-1 ${
-                      location.pathname === '/admin' ? 'text-[#00D2D3]' : 'text-slate-300 hover:text-white'
+                    className={`text-sm font-semibold transition-colors py-2 flex items-center gap-1.5 ${
+                      location.pathname === '/admin' ? 'text-[#6C5CE7]' : 'text-slate-600 hover:text-[#6C5CE7]'
                     }`}
                   >
-                    <HiShieldCheck className="text-base" /> Admin
+                    <HiShieldCheck className="text-base text-[#6C5CE7]" /> Admin
                   </Link>
                 )}
                 <Link
                   to="/applications/my"
-                  className={`text-sm font-medium transition-colors py-2 flex items-center gap-1 ${
-                    location.pathname === '/applications/my' ? 'text-[#00D2D3]' : 'text-slate-300 hover:text-white'
+                  className={`text-sm font-semibold transition-colors py-2 flex items-center gap-1.5 ${
+                    location.pathname === '/applications/my' ? 'text-[#6C5CE7]' : 'text-slate-600 hover:text-[#6C5CE7]'
                   }`}
                 >
-                  <HiDocumentCheck className="text-base" /> My Applied Jobs
+                  <HiDocumentCheck className="text-base text-[#00D2D3]" /> My Applied
                 </Link>
                 <Link
                   to="/jobs/manage"
-                  className={`text-sm font-medium transition-colors py-2 flex items-center gap-1 ${
-                    location.pathname === '/jobs/manage' ? 'text-[#00D2D3]' : 'text-slate-300 hover:text-white'
+                  className={`text-sm font-semibold transition-colors py-2 flex items-center gap-1.5 ${
+                    location.pathname === '/jobs/manage' ? 'text-[#6C5CE7]' : 'text-slate-600 hover:text-[#6C5CE7]'
                   }`}
                 >
-                  <HiSquares2X2 className="text-base" /> My Jobs
+                  <HiSquares2X2 className="text-base text-[#6C5CE7]" /> My Jobs
                 </Link>
                 <Link
                   to="/jobs/add"
-                  className={`text-sm font-medium transition-colors py-2 flex items-center gap-1 ${
-                    location.pathname === '/jobs/add' ? 'text-[#00D2D3]' : 'text-slate-300 hover:text-white'
+                  className={`text-sm font-semibold transition-colors py-2 flex items-center gap-1.5 ${
+                    location.pathname === '/jobs/add' ? 'text-[#6C5CE7]' : 'text-slate-600 hover:text-[#6C5CE7]'
                   }`}
                 >
-                  <HiPlus className="text-base" /> Post Job
+                  <HiPlus className="text-base text-[#00D2D3]" /> Post Job
                 </Link>
               </>
             )}
@@ -132,7 +132,7 @@ const Navbar = () => {
               <div className="relative">
                 <button
                   onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="flex items-center space-x-3 bg-white/5 border border-white/10 hover:border-white/20 py-1.5 pl-3 pr-4 rounded-full transition-all focus:outline-none"
+                  className="flex items-center space-x-3 bg-white/80 border border-slate-200 hover:border-[#6C5CE7]/40 shadow-sm py-1.5 pl-3 pr-4 rounded-full transition-all focus:outline-none cursor-pointer"
                 >
                   <img
                     src={avatarError || !user.avatar ? defaultAvatar : user.avatar}
@@ -141,7 +141,7 @@ const Navbar = () => {
                     onError={() => setAvatarError(true)}
                     className="w-7 h-7 rounded-full object-cover border border-slate-200"
                   />
-                  <span className="text-sm font-medium text-slate-200">{user.name}</span>
+                  <span className="text-sm font-semibold text-slate-700">{user.name}</span>
                 </button>
 
                 <AnimatePresence>
@@ -150,38 +150,38 @@ const Navbar = () => {
                       initial={{ opacity: 0, y: 10, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      className="absolute right-0 mt-2 w-52 rounded-2xl glass-dark shadow-xl border border-white/5 py-2 z-50 origin-top-right"
+                      className="absolute right-0 mt-2 w-56 rounded-2xl glass shadow-xl border border-slate-200/80 py-2 z-50 origin-top-right"
                     >
-                      <div className="px-4 py-2 border-b border-white/5">
+                      <div className="px-4 py-2.5 border-b border-slate-100">
                         <p className="text-xs text-slate-400">Signed in as</p>
-                        <p className="text-sm font-semibold truncate text-slate-200">{user.email}</p>
-                        <span className="inline-block mt-1 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-[#6C5CE7]/20 text-[#6C5CE7]">
+                        <p className="text-sm font-bold truncate text-slate-800">{user.email}</p>
+                        <span className="inline-block mt-1 text-[10px] uppercase font-extrabold tracking-wider px-2.5 py-0.5 rounded-full badge-gradient-purple">
                           {user.role}
                         </span>
                       </div>
                       <Link
                         to="/applications/my"
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
+                        className="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:text-[#6C5CE7] hover:bg-[#6C5CE7]/5 transition-colors font-medium"
                       >
-                        <HiDocumentCheck /> My Applied Jobs
+                        <HiDocumentCheck className="text-[#00D2D3]" /> My Applied Jobs
                       </Link>
                       {user?.role === 'admin' && (
                         <>
                           <Link
                             to="/admin"
-                            className="flex items-center gap-2 px-4 py-2 text-sm text-[#00D2D3] hover:text-white hover:bg-white/5 transition-colors font-semibold"
+                            className="flex items-center gap-2 px-4 py-2 text-sm text-[#6C5CE7] hover:bg-[#6C5CE7]/5 transition-colors font-semibold"
                           >
                             <HiShieldCheck /> Admin Dashboard
                           </Link>
                           <Link
                             to="/jobs/manage"
-                            className="flex items-center gap-2 px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
+                            className="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:text-[#6C5CE7] hover:bg-[#6C5CE7]/5 transition-colors font-medium"
                           >
                             <HiSquares2X2 /> My Posted Jobs
                           </Link>
                           <Link
                             to="/jobs/add"
-                            className="flex items-center gap-2 px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
+                            className="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:text-[#6C5CE7] hover:bg-[#6C5CE7]/5 transition-colors font-medium"
                           >
                             <HiPlus /> Post a New Job
                           </Link>
@@ -189,7 +189,7 @@ const Navbar = () => {
                       )}
                       <button
                         onClick={handleLogout}
-                        className="w-full text-left flex items-center gap-2 px-4 py-2 text-sm text-rose-400 hover:text-rose-300 hover:bg-rose-500/5 border-t border-white/5 transition-colors mt-1"
+                        className="w-full text-left flex items-center gap-2 px-4 py-2 text-sm text-rose-500 hover:text-rose-600 hover:bg-rose-50 border-t border-slate-100 transition-colors mt-1 font-semibold cursor-pointer"
                       >
                         <HiArrowRightOnRectangle /> Log Out
                       </button>
@@ -201,13 +201,13 @@ const Navbar = () => {
               <div className="flex items-center space-x-3">
                 <Link
                   to="/login"
-                  className="text-sm font-medium text-slate-300 hover:text-white px-4 py-2 rounded-xl hover:bg-white/5 transition-colors"
+                  className="text-sm font-semibold text-slate-700 hover:text-[#6C5CE7] px-4 py-2 rounded-xl hover:bg-slate-100 transition-colors"
                 >
                   Sign In
                 </Link>
                 <Link
                   to="/register"
-                  className="text-sm font-medium px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#6C5CE7] to-[#00D2D3] hover:from-[#5a3fd9] hover:to-[#03a0a6] text-white shadow-lg shadow-[#6C5CE7]/25 hover:shadow-[#6C5CE7]/40 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0"
+                  className="text-sm font-bold px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#6C5CE7] to-[#00D2D3] hover:opacity-95 text-white shadow-md shadow-[#6C5CE7]/25 hover:shadow-lg hover:shadow-[#6C5CE7]/35 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0"
                 >
                   Sign Up
                 </Link>
@@ -219,7 +219,7 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 focus:outline-none"
+              className="p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none cursor-pointer"
             >
               {isOpen ? <HiXMark className="h-6 w-6" /> : <HiBars3 className="h-6 w-6" />}
             </button>
@@ -234,17 +234,18 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-dark border-b border-white/5 shadow-2xl overflow-hidden"
+            className="md:hidden bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-2xl overflow-hidden"
           >
-            <div className="px-4 pt-2 pb-6 space-y-3">
+            <div className="px-4 pt-2 pb-6 space-y-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`block px-4 py-2.5 rounded-xl text-base font-medium transition-all ${
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                     location.pathname === link.path
-                      ? 'bg-white/10 text-white border-l-4 border-[#00D2D3]'
-                      : 'text-slate-300 hover:text-white hover:bg-white/5'
+                      ? 'bg-gradient-to-r from-[#6C5CE7]/15 to-[#00D2D3]/15 text-[#6C5CE7] border-l-4 border-[#6C5CE7]'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                   }`}
                 >
                   {link.name}
@@ -254,10 +255,11 @@ const Navbar = () => {
               {isAuthenticated && (
                 <Link
                   to="/applications/my"
-                  className={`block px-4 py-2.5 rounded-xl text-base font-medium transition-all ${
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                     location.pathname === '/applications/my'
-                      ? 'bg-white/10 text-white border-l-4 border-[#00D2D3]'
-                      : 'text-slate-300 hover:text-white hover:bg-white/5'
+                      ? 'bg-gradient-to-r from-[#6C5CE7]/15 to-[#00D2D3]/15 text-[#6C5CE7] border-l-4 border-[#6C5CE7]'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                   }`}
                 >
                   📄 My Applied Jobs
@@ -268,48 +270,51 @@ const Navbar = () => {
                 <>
                   <Link
                     to="/admin"
-                    className={`block px-4 py-2.5 rounded-xl text-base font-medium transition-all ${
+                    onClick={() => setIsOpen(false)}
+                    className={`block px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                       location.pathname === '/admin'
-                        ? 'bg-[#6C5CE7]/20 text-[#00D2D3] border-l-4 border-[#00D2D3]'
-                        : 'text-[#00D2D3] hover:text-white hover:bg-white/5'
+                        ? 'bg-violet-50 text-[#6C5CE7] border-l-4 border-[#6C5CE7]'
+                        : 'text-[#6C5CE7] hover:bg-violet-50'
                     }`}
                   >
                     🛡️ Admin Dashboard
                   </Link>
                   <Link
                     to="/jobs/manage"
-                    className="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-300 hover:text-white hover:bg-white/5"
+                    onClick={() => setIsOpen(false)}
+                    className="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100"
                   >
                     My Jobs
                   </Link>
                   <Link
                     to="/jobs/add"
-                    className="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-300 hover:text-white hover:bg-white/5"
+                    onClick={() => setIsOpen(false)}
+                    className="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100"
                   >
                     Post a Job
                   </Link>
                 </>
               )}
 
-              <div className="pt-4 border-t border-white/5 space-y-3">
+              <div className="pt-4 border-t border-slate-200 space-y-3">
                 {isAuthenticated && user ? (
-                  <div className="px-4 py-2 flex items-center justify-between">
+                  <div className="px-2 py-2 flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                       <img
                         src={avatarError || !user.avatar ? defaultAvatar : user.avatar}
                         alt={user.name}
                         referrerPolicy="no-referrer"
                         onError={() => setAvatarError(true)}
-                        className="w-10 h-10 rounded-full object-cover border border-slate-200"
+                        className="w-10 h-10 rounded-full object-cover border border-slate-200 shadow-sm"
                       />
                       <div>
-                        <p className="text-sm font-semibold text-slate-200">{user.name}</p>
-                        <p className="text-xs text-slate-400">{user.email}</p>
+                        <p className="text-sm font-bold text-slate-900">{user.name}</p>
+                        <p className="text-xs text-slate-500">{user.email}</p>
                       </div>
                     </div>
                     <button
                       onClick={handleLogout}
-                      className="p-2 rounded-xl bg-rose-500/10 text-rose-400 hover:bg-rose-500/20"
+                      className="p-2 rounded-xl bg-rose-50 text-rose-600 hover:bg-rose-100 cursor-pointer"
                     >
                       <HiArrowRightOnRectangle className="text-xl" />
                     </button>
@@ -318,13 +323,15 @@ const Navbar = () => {
                   <div className="grid grid-cols-2 gap-3 px-2">
                     <Link
                       to="/login"
-                      className="text-center text-sm font-medium text-slate-300 hover:text-white py-3 rounded-xl border border-white/10 hover:bg-white/5 transition-all"
+                      onClick={() => setIsOpen(false)}
+                      className="text-center text-sm font-semibold text-slate-700 hover:text-slate-900 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 transition-all shadow-sm"
                     >
                       Sign In
                     </Link>
                     <Link
                       to="/register"
-                      className="text-center text-sm font-medium bg-gradient-to-r from-[#6C5CE7] to-[#00D2D3] text-white py-3 rounded-xl shadow-lg shadow-[#6C5CE7]/20"
+                      onClick={() => setIsOpen(false)}
+                      className="text-center text-sm font-bold bg-gradient-to-r from-[#6C5CE7] to-[#00D2D3] text-white py-2.5 rounded-xl shadow-md shadow-[#6C5CE7]/20"
                     >
                       Sign Up
                     </Link>

@@ -18,17 +18,17 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0f0f1a] pt-28 pb-20">
+    <div className="min-h-screen pt-28 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Intro */}
         <div className="text-center max-w-2xl mx-auto space-y-4">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#6C5CE7]/10 border border-[#6C5CE7]/20 text-[#9580f3] text-xs font-semibold">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-violet-50 border border-violet-200 text-[#6C5CE7] text-xs font-bold shadow-sm">
             Get in Touch
           </span>
-          <h1 className="text-4xl font-extrabold font-heading text-slate-100">
+          <h1 className="text-4xl font-black font-heading text-slate-900">
             We'd Love to Hear <span className="gradient-text">From You</span>
           </h1>
-          <p className="text-slate-400 text-sm">
+          <p className="text-slate-600 text-sm">
             Have questions about posting jobs, managing application logs, or account verification? Submit the contact form below and our team will respond within 24 hours.
           </p>
         </div>
@@ -41,30 +41,30 @@ const Contact = () => {
               { title: 'Call Our Helpline', text: '+1 (555) 123-4567 (Mon-Fri, 9am - 6pm PST)', icon: <HiPhone className="text-2xl text-[#6C5CE7]" /> },
               { title: 'Email Support', text: 'support@jobnest.com / sales@jobnest.com', icon: <HiEnvelope className="text-2xl text-[#00D2D3]" /> }
             ].map((card, idx) => (
-              <div key={idx} className="p-6 rounded-2xl glass-card border border-white/10 flex gap-4 items-start">
-                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+              <div key={idx} className="p-6 rounded-2xl glass-card border border-slate-200/80 flex gap-4 items-start shadow-md">
+                <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center shrink-0 shadow-sm">
                   {card.icon}
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-white font-heading mb-1">{card.title}</h3>
-                  <p className="text-xs text-slate-300 leading-relaxed">{card.text}</p>
+                  <h3 className="text-sm font-bold text-slate-900 font-heading mb-1">{card.title}</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">{card.text}</p>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Form */}
-          <div className="lg:col-span-2 p-8 rounded-2xl glass-card border border-white/10">
+          <div className="lg:col-span-2 p-8 rounded-3xl glass-card border border-slate-200/80 shadow-xl shadow-slate-100">
             {submitted ? (
               <div className="h-full flex flex-col items-center justify-center text-center py-12 space-y-4">
                 <HiCheckCircle className="text-5xl text-[#00D2D3] animate-bounce" />
-                <h3 className="text-xl font-bold text-slate-200 font-heading">Message Sent!</h3>
-                <p className="text-slate-400 text-sm max-w-sm leading-relaxed">
+                <h3 className="text-xl font-bold text-slate-900 font-heading">Message Sent!</h3>
+                <p className="text-slate-500 text-sm max-w-sm leading-relaxed">
                   Thank you for reaching out. We have logged your support request and will follow up shortly.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="px-5 py-2.5 rounded-xl bg-[#6C5CE7] hover:bg-[#5a3fd9] text-white text-sm font-semibold transition-all duration-150"
+                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#6C5CE7] to-[#00D2D3] text-white text-sm font-semibold transition-all shadow-md shadow-[#6C5CE7]/20 cursor-pointer"
                 >
                   Send Another Message
                 </button>
@@ -73,55 +73,55 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-xs font-semibold text-slate-300">Your Name *</label>
+                    <label className="text-xs font-bold uppercase tracking-wider text-slate-700">Your Name *</label>
                     <input
                       type="text"
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="John Doe"
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-200 placeholder-slate-500 text-sm outline-none focus:border-[#6C5CE7]/40"
+                      className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 placeholder-slate-400 text-sm outline-none focus:border-[#6C5CE7] shadow-sm"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-semibold text-slate-300">Email Address *</label>
+                    <label className="text-xs font-bold uppercase tracking-wider text-slate-700">Email Address *</label>
                     <input
                       type="email"
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="john@example.com"
-                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-200 placeholder-slate-500 text-sm outline-none focus:border-[#6C5CE7]/40"
+                      className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 placeholder-slate-400 text-sm outline-none focus:border-[#6C5CE7] shadow-sm"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-semibold text-slate-300">Subject</label>
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-700">Subject</label>
                   <input
                     type="text"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     placeholder="Feedback / Inquiry / Help"
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-200 placeholder-slate-500 text-sm outline-none focus:border-[#6C5CE7]/40"
+                    className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 placeholder-slate-400 text-sm outline-none focus:border-[#6C5CE7] shadow-sm"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-semibold text-slate-300">Your Message *</label>
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-700">Your Message *</label>
                   <textarea
                     required
                     rows={5}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Write your note here..."
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-200 placeholder-slate-500 text-sm outline-none focus:border-[#6C5CE7]/40 resize-none"
+                    className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 placeholder-slate-400 text-sm outline-none focus:border-[#6C5CE7] resize-none shadow-sm"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-[#6C5CE7] to-[#00D2D3] text-white py-3 rounded-xl text-sm font-semibold transition-all duration-200 shadow-md shadow-[#6C5CE7]/20 hover:opacity-95"
+                  className="w-full bg-gradient-to-r from-[#6C5CE7] to-[#00D2D3] text-white py-3.5 rounded-xl text-sm font-bold transition-all duration-200 shadow-md shadow-[#6C5CE7]/20 hover:opacity-95 cursor-pointer"
                 >
                   Send Message
                 </button>

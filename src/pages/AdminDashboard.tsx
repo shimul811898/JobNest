@@ -139,21 +139,21 @@ const AdminDashboard = () => {
     : [];
 
   const statusColors: Record<string, string> = {
-    pending: 'bg-amber-500/15 text-amber-400 border-amber-500/20',
-    reviewed: 'bg-blue-500/15 text-blue-400 border-blue-500/20',
-    accepted: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/20',
-    rejected: 'bg-rose-500/15 text-rose-400 border-rose-500/20',
+    pending: 'bg-amber-50 text-amber-700 border-amber-300',
+    reviewed: 'bg-blue-50 text-blue-700 border-blue-300',
+    accepted: 'bg-emerald-50 text-emerald-700 border-emerald-300',
+    rejected: 'bg-rose-50 text-rose-700 border-rose-300',
   };
 
   const statusIcons: Record<string, React.ReactNode> = {
-    pending: <HiClock className="text-amber-400" />,
-    reviewed: <HiEye className="text-blue-400" />,
-    accepted: <HiCheckCircle className="text-emerald-400" />,
-    rejected: <HiXCircle className="text-rose-400" />,
+    pending: <HiClock className="text-amber-600" />,
+    reviewed: <HiEye className="text-blue-600" />,
+    accepted: <HiCheckCircle className="text-emerald-600" />,
+    rejected: <HiXCircle className="text-rose-600" />,
   };
 
   return (
-    <div className="min-h-screen bg-[#0f0f1a] pt-28 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -163,16 +163,16 @@ const AdminDashboard = () => {
                 <HiShieldCheck className="text-2xl text-white" />
               </div>
               <div>
-                <h1 className="text-2xl sm:text-3xl font-black font-heading text-white">Admin Dashboard</h1>
-                <p className="text-sm text-slate-400">
-                  Welcome back, <span className="text-[#00D2D3] font-semibold">{user?.name}</span>
+                <h1 className="text-2xl sm:text-3xl font-black font-heading text-slate-900">Admin Dashboard</h1>
+                <p className="text-sm text-slate-500">
+                  Welcome back, <span className="text-[#6C5CE7] font-semibold">{user?.name}</span>
                 </p>
               </div>
             </div>
           </div>
           <Link
             to="/jobs/add"
-            className="flex items-center gap-1.5 bg-gradient-to-r from-[#6C5CE7] to-[#00D2D3] text-white px-5 py-2.5 rounded-xl text-sm font-bold shadow-md shadow-[#6C5CE7]/15 hover:opacity-95 transition-all shrink-0"
+            className="flex items-center gap-1.5 bg-gradient-to-r from-[#6C5CE7] to-[#00D2D3] text-white px-5 py-2.5 rounded-xl text-sm font-bold shadow-md shadow-[#6C5CE7]/20 hover:opacity-95 transition-all shrink-0 cursor-pointer"
           >
             + Post a Job
           </Link>
@@ -184,10 +184,10 @@ const AdminDashboard = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold transition-all whitespace-nowrap ${
+              className={`flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold transition-all whitespace-nowrap cursor-pointer ${
                 activeTab === tab.id
                   ? 'bg-gradient-to-r from-[#6C5CE7] to-[#00D2D3] text-white shadow-lg shadow-[#6C5CE7]/20'
-                  : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 border border-white/5'
+                  : 'bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-slate-200 shadow-sm'
               }`}
             >
               {tab.icon}
@@ -215,17 +215,17 @@ const AdminDashboard = () => {
                   ].map((stat, i) => (
                     <div
                       key={i}
-                      className="relative overflow-hidden rounded-2xl glass-card border border-white/10 p-6 group transition-all"
+                      className="relative overflow-hidden rounded-2xl glass-card border border-slate-200/80 p-6 group transition-all shadow-md"
                     >
-                      <div className="absolute top-0 right-0 w-24 h-24 rounded-full blur-3xl opacity-20" style={{ background: stat.color }} />
+                      <div className="absolute top-0 right-0 w-24 h-24 rounded-full blur-3xl opacity-15" style={{ background: stat.color }} />
                       <div className="flex items-center justify-between mb-4">
-                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">{stat.label}</span>
-                        <div className="w-10 h-10 rounded-xl flex items-center justify-center text-lg" style={{ background: `${stat.color}20`, color: stat.color }}>
+                        <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">{stat.label}</span>
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center text-lg" style={{ background: `${stat.color}15`, color: stat.color }}>
                           {stat.icon}
                         </div>
                       </div>
-                      <div className="text-4xl font-extrabold text-white font-heading">{stat.value}</div>
-                      <p className="text-xs text-slate-400 mt-1">{stat.sub}</p>
+                      <div className="text-4xl font-black text-slate-900 font-heading">{stat.value}</div>
+                      <p className="text-xs text-slate-500 mt-1">{stat.sub}</p>
                     </div>
                   ))}
                 </div>
@@ -233,16 +233,16 @@ const AdminDashboard = () => {
                 {/* Charts Row */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {/* Category Distribution */}
-                  <div className="rounded-2xl glass-card border border-white/10 p-6">
-                    <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider mb-4">Jobs by Category</h3>
+                  <div className="rounded-2xl glass-card border border-slate-200/80 p-6 shadow-md">
+                    <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4">Jobs by Category</h3>
                     <div className="h-64">
                       <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={categoryChartData}>
-                          <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} angle={-25} textAnchor="end" height={60} />
-                          <YAxis allowDecimals={false} tick={{ fontSize: 10, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+                          <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} angle={-25} textAnchor="end" height={60} />
+                          <YAxis allowDecimals={false} tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} />
                           <Tooltip
-                            contentStyle={{ background: '#121324', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '12px', fontSize: '12px', color: '#e2e8f0', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}
-                            labelStyle={{ fontWeight: 'bold', color: '#00D2D3' }}
+                            contentStyle={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', fontSize: '12px', color: '#0f172a', boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }}
+                            labelStyle={{ fontWeight: 'bold', color: '#6C5CE7' }}
                           />
                           <Bar dataKey="count" radius={[6, 6, 0, 0]}>
                             {categoryChartData.map((_, index) => (
@@ -255,8 +255,8 @@ const AdminDashboard = () => {
                   </div>
 
                   {/* Type Distribution */}
-                  <div className="rounded-2xl glass-card border border-white/10 p-6">
-                    <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider mb-4">Jobs by Type</h3>
+                  <div className="rounded-2xl glass-card border border-slate-200/80 p-6 shadow-md">
+                    <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4">Jobs by Type</h3>
                     <div className="h-64 flex items-center justify-center">
                       <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
@@ -277,7 +277,7 @@ const AdminDashboard = () => {
                             ))}
                           </Pie>
                           <Tooltip
-                            contentStyle={{ background: '#121324', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '12px', fontSize: '12px', color: '#e2e8f0', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}
+                            contentStyle={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', fontSize: '12px', color: '#0f172a', boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }}
                           />
                         </PieChart>
                       </ResponsiveContainer>
@@ -287,20 +287,20 @@ const AdminDashboard = () => {
 
                 {/* Recent Applications */}
                 {stats?.recentApplications?.length > 0 && (
-                  <div className="rounded-2xl border border-white/5 bg-white/[0.03] backdrop-blur-sm p-6">
-                    <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Recent Applications</h3>
+                  <div className="rounded-2xl border border-slate-200/80 glass-card p-6 shadow-md">
+                    <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4">Recent Applications</h3>
                     <div className="space-y-3">
                       {stats.recentApplications.map((app: any) => (
-                        <div key={app._id} className="flex items-center justify-between py-3 px-4 rounded-xl bg-white/[0.02] border border-white/5">
+                        <div key={app._id} className="flex items-center justify-between py-3 px-4 rounded-xl bg-slate-50/70 border border-slate-200">
                           <div className="flex items-center gap-3">
                             <img
                               src={app.userId?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(app.userId?.name || 'U')}&background=6C5CE7&color=fff`}
                               alt={app.userId?.name}
-                              className="w-9 h-9 rounded-full object-cover border border-white/10"
+                              className="w-9 h-9 rounded-full object-cover border border-slate-200"
                             />
                             <div>
-                              <p className="text-sm font-semibold text-slate-200">{app.userId?.name || 'Unknown'}</p>
-                              <p className="text-xs text-slate-500">Applied for <span className="text-[#00D2D3]">{app.jobId?.title || 'Unknown Job'}</span></p>
+                              <p className="text-sm font-bold text-slate-900">{app.userId?.name || 'Unknown'}</p>
+                              <p className="text-xs text-slate-500">Applied for <span className="text-[#6C5CE7] font-semibold">{app.jobId?.title || 'Unknown Job'}</span></p>
                             </div>
                           </div>
                           <span className={`text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full border ${statusColors[app.status] || ''}`}>
@@ -321,13 +321,13 @@ const AdminDashboard = () => {
           <div className="space-y-6 animate-fade-in">
             {/* Search */}
             <div className="relative max-w-md">
-              <HiMagnifyingGlass className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
+              <HiMagnifyingGlass className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg" />
               <input
                 type="text"
                 value={jobSearch}
                 onChange={(e) => setJobSearch(e.target.value)}
                 placeholder="Search jobs by title or company..."
-                className="w-full pl-11 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-200 placeholder-slate-500 text-sm focus:outline-none focus:border-[#6C5CE7]/50 focus:ring-1 focus:ring-[#6C5CE7]/30 transition-all"
+                className="w-full pl-11 pr-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:border-[#6C5CE7] shadow-sm transition-all"
               />
             </div>
 
@@ -336,11 +336,11 @@ const AdminDashboard = () => {
                 <div className="w-10 h-10 border-4 border-[#6C5CE7] border-t-transparent rounded-full animate-spin" />
               </div>
             ) : (
-              <div className="rounded-2xl glass-card border border-white/10 overflow-hidden">
+              <div className="rounded-2xl glass-card border border-slate-200/80 overflow-hidden shadow-lg">
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
-                      <tr className="border-b border-white/10 text-[11px] font-bold uppercase tracking-wider text-slate-400 bg-white/5">
+                      <tr className="border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider text-slate-500 bg-slate-50/80">
                         <th className="py-4 px-6">Job</th>
                         <th className="py-4 px-6">Category</th>
                         <th className="py-4 px-6">Type</th>
@@ -351,40 +351,40 @@ const AdminDashboard = () => {
                         <th className="py-4 px-6 text-right">Actions</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-white/5 text-sm">
+                    <tbody className="divide-y divide-slate-100 text-sm">
                       {(jobsData?.jobs || []).map((job: any) => (
-                        <tr key={job._id} className="hover:bg-white/[0.02] transition-colors">
+                        <tr key={job._id} className="hover:bg-slate-50/50 transition-colors">
                           <td className="py-4 px-6">
                             <div className="flex items-center gap-3">
                               <img
                                 src={job.companyLogo || `https://ui-avatars.com/api/?name=${job.company}&background=6C5CE7&color=fff`}
                                 alt={job.company}
-                                className="w-9 h-9 rounded-lg object-cover border border-white/10"
+                                className="w-9 h-9 rounded-xl object-cover border border-slate-200 shadow-sm"
                               />
                               <div>
-                                <p className="font-bold text-slate-200 text-sm">{job.title}</p>
-                                <p className="text-xs text-[#6C5CE7]">{job.company}</p>
+                                <p className="font-bold text-slate-900 text-sm">{job.title}</p>
+                                <p className="text-xs text-[#6C5CE7] font-semibold">{job.company}</p>
                               </div>
                             </div>
                           </td>
-                          <td className="py-4 px-6 text-slate-400 text-xs font-semibold">{job.category}</td>
+                          <td className="py-4 px-6 text-slate-600 text-xs font-semibold">{job.category}</td>
                           <td className="py-4 px-6">
-                            <span className="text-xs font-bold px-2 py-1 rounded-lg bg-white/5 text-slate-300">{job.type}</span>
+                            <span className="text-xs font-bold px-2 py-1 rounded-lg bg-slate-100 border border-slate-200 text-slate-700">{job.type}</span>
                           </td>
                           <td className="py-4 px-6">
-                            <div className="flex items-center gap-1.5 text-xs text-slate-400">
+                            <div className="flex items-center gap-1.5 text-xs text-slate-600">
                               <HiMapPin className="text-[#00D2D3] shrink-0" />
                               {job.location}
                             </div>
                           </td>
-                          <td className="py-4 px-6 text-sm font-semibold text-slate-300">
+                          <td className="py-4 px-6 text-sm font-bold text-slate-900">
                             ${job.salary?.min?.toLocaleString()} - ${job.salary?.max?.toLocaleString()}
                           </td>
-                          <td className="py-4 px-6 text-xs text-slate-400">
+                          <td className="py-4 px-6 text-xs text-slate-500">
                             {typeof job.postedBy === 'object' ? job.postedBy?.name : 'Unknown'}
                           </td>
                           <td className="py-4 px-6">
-                            <span className={`text-[10px] uppercase font-bold px-2 py-1 rounded-full ${job.isActive ? 'bg-emerald-500/15 text-emerald-400' : 'bg-slate-500/15 text-slate-400'}`}>
+                            <span className={`text-[10px] uppercase font-bold px-2.5 py-1 rounded-full border ${job.isActive ? 'bg-emerald-50 text-emerald-700 border-emerald-300' : 'bg-slate-100 text-slate-600 border-slate-300'}`}>
                               {job.isActive ? 'Active' : 'Inactive'}
                             </span>
                           </td>
@@ -392,14 +392,14 @@ const AdminDashboard = () => {
                             <div className="flex items-center justify-end gap-2">
                               <Link
                                 to={`/jobs/${job._id}`}
-                                className="p-2 rounded-lg bg-white/5 hover:bg-[#6C5CE7]/20 text-slate-400 hover:text-[#6C5CE7] transition-all"
+                                className="p-2 rounded-xl bg-white hover:bg-slate-100 text-slate-600 hover:text-slate-900 border border-slate-200 transition-all shadow-sm"
                                 title="View"
                               >
                                 <HiEye className="text-base" />
                               </Link>
                               <button
                                 onClick={() => handleDeleteJob(job._id, job.title)}
-                                className="p-2 rounded-lg bg-white/5 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 transition-all"
+                                className="p-2 rounded-xl bg-white hover:bg-rose-50 text-rose-600 hover:text-rose-700 border border-slate-200 hover:border-rose-200 transition-all shadow-sm cursor-pointer"
                                 title="Delete"
                               >
                                 <HiTrash className="text-base" />
@@ -417,7 +417,7 @@ const AdminDashboard = () => {
                 )}
 
                 {jobsData?.total > 0 && (
-                  <div className="px-6 py-4 border-t border-white/5 text-xs text-slate-500">
+                  <div className="px-6 py-4 border-t border-slate-100 text-xs text-slate-500">
                     Showing {jobsData.jobs.length} of {jobsData.total} jobs
                   </div>
                 )}
@@ -431,13 +431,13 @@ const AdminDashboard = () => {
           <div className="space-y-6 animate-fade-in">
             {/* Search */}
             <div className="relative max-w-md">
-              <HiMagnifyingGlass className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
+              <HiMagnifyingGlass className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg" />
               <input
                 type="text"
                 value={userSearch}
                 onChange={(e) => setUserSearch(e.target.value)}
                 placeholder="Search users by name or email..."
-                className="w-full pl-11 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-200 placeholder-slate-500 text-sm focus:outline-none focus:border-[#6C5CE7]/50 focus:ring-1 focus:ring-[#6C5CE7]/30 transition-all"
+                className="w-full pl-11 pr-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:border-[#6C5CE7] shadow-sm transition-all"
               />
             </div>
 
@@ -446,36 +446,36 @@ const AdminDashboard = () => {
                 <div className="w-10 h-10 border-4 border-[#6C5CE7] border-t-transparent rounded-full animate-spin" />
               </div>
             ) : (
-              <div className="rounded-2xl glass-card border border-white/10 overflow-hidden">
+              <div className="rounded-2xl glass-card border border-slate-200/80 overflow-hidden shadow-lg">
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
-                      <tr className="border-b border-white/10 text-[11px] font-bold uppercase tracking-wider text-slate-400 bg-white/5">
+                      <tr className="border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider text-slate-500 bg-slate-50/80">
                         <th className="py-4 px-6">User</th>
                         <th className="py-4 px-6">Email</th>
                         <th className="py-4 px-6">Role</th>
                         <th className="py-4 px-6">Joined</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-white/5 text-sm">
+                    <tbody className="divide-y divide-slate-100 text-sm">
                       {(usersData?.users || []).map((u: any) => (
-                        <tr key={u._id} className="hover:bg-white/[0.02] transition-colors">
+                        <tr key={u._id} className="hover:bg-slate-50/50 transition-colors">
                           <td className="py-4 px-6">
                             <div className="flex items-center gap-3">
                               <img
                                 src={u.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(u.name)}&background=6C5CE7&color=fff`}
                                 alt={u.name}
-                                className="w-9 h-9 rounded-full object-cover border border-white/10"
+                                className="w-9 h-9 rounded-full object-cover border border-slate-200 shadow-sm"
                               />
-                              <span className="font-semibold text-slate-200">{u.name}</span>
+                              <span className="font-bold text-slate-900">{u.name}</span>
                             </div>
                           </td>
-                          <td className="py-4 px-6 text-slate-400 text-sm">{u.email}</td>
+                          <td className="py-4 px-6 text-slate-600 text-sm">{u.email}</td>
                           <td className="py-4 px-6">
                             <span className={`text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full border ${
                               u.role === 'admin'
-                                ? 'bg-[#6C5CE7]/15 text-[#6C5CE7] border-[#6C5CE7]/20'
-                                : 'bg-slate-500/15 text-slate-400 border-slate-500/20'
+                                ? 'bg-violet-50 text-[#6C5CE7] border-violet-200'
+                                : 'bg-slate-100 text-slate-600 border-slate-200'
                             }`}>
                               {u.role}
                             </span>
@@ -494,7 +494,7 @@ const AdminDashboard = () => {
                 )}
 
                 {usersData?.total > 0 && (
-                  <div className="px-6 py-4 border-t border-white/5 text-xs text-slate-500">
+                  <div className="px-6 py-4 border-t border-slate-100 text-xs text-slate-500">
                     Showing {usersData.users.length} of {usersData.total} users
                   </div>
                 )}
@@ -512,10 +512,10 @@ const AdminDashboard = () => {
                 <button
                   key={s}
                   onClick={() => setAppFilter(s)}
-                  className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+                  className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                     appFilter === s
-                      ? 'bg-gradient-to-r from-[#6C5CE7] to-[#00D2D3] text-white shadow-lg shadow-[#6C5CE7]/20'
-                      : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 border border-white/5'
+                      ? 'bg-gradient-to-r from-[#6C5CE7] to-[#00D2D3] text-white shadow-md shadow-[#6C5CE7]/20'
+                      : 'bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-slate-200 shadow-sm'
                   }`}
                 >
                   {s === 'all' ? <HiDocumentText /> : statusIcons[s]}
@@ -529,11 +529,11 @@ const AdminDashboard = () => {
                 <div className="w-10 h-10 border-4 border-[#6C5CE7] border-t-transparent rounded-full animate-spin" />
               </div>
             ) : (
-              <div className="rounded-2xl glass-card border border-white/10 overflow-hidden">
+              <div className="rounded-2xl glass-card border border-slate-200/80 overflow-hidden shadow-lg">
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
-                      <tr className="border-b border-white/10 text-[11px] font-bold uppercase tracking-wider text-slate-400 bg-white/5">
+                      <tr className="border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider text-slate-500 bg-slate-50/80">
                         <th className="py-4 px-6">Applicant</th>
                         <th className="py-4 px-6">Job Applied</th>
                         <th className="py-4 px-6">Date</th>
@@ -541,26 +541,26 @@ const AdminDashboard = () => {
                         <th className="py-4 px-6 text-right">Actions</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-white/5 text-sm">
+                    <tbody className="divide-y divide-slate-100 text-sm">
                       {(appsData?.applications || []).map((app: any) => (
-                        <tr key={app._id} className="hover:bg-white/[0.02] transition-colors">
+                        <tr key={app._id} className="hover:bg-slate-50/50 transition-colors">
                           <td className="py-4 px-6">
                             <div className="flex items-center gap-3">
                               <img
                                 src={app.userId?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(app.userId?.name || 'U')}&background=6C5CE7&color=fff`}
                                 alt={app.userId?.name}
-                                className="w-9 h-9 rounded-full object-cover border border-white/10"
+                                className="w-9 h-9 rounded-full object-cover border border-slate-200 shadow-sm"
                               />
                               <div>
-                                <p className="font-semibold text-slate-200">{app.userId?.name || 'Unknown'}</p>
+                                <p className="font-bold text-slate-900">{app.userId?.name || 'Unknown'}</p>
                                 <p className="text-xs text-slate-500">{app.userId?.email || ''}</p>
                               </div>
                             </div>
                           </td>
                           <td className="py-4 px-6">
                             <div>
-                              <p className="text-sm font-semibold text-slate-300">{app.jobId?.title || 'Deleted Job'}</p>
-                              <p className="text-xs text-[#6C5CE7]">{app.jobId?.company || ''}</p>
+                              <p className="text-sm font-bold text-slate-900">{app.jobId?.title || 'Deleted Job'}</p>
+                              <p className="text-xs text-[#6C5CE7] font-semibold">{app.jobId?.company || ''}</p>
                             </div>
                           </td>
                           <td className="py-4 px-6 text-xs text-slate-500">
@@ -576,7 +576,7 @@ const AdminDashboard = () => {
                               {app.status !== 'reviewed' && (
                                 <button
                                   onClick={() => statusMutation.mutate({ id: app._id, status: 'reviewed' })}
-                                  className="p-1.5 rounded-lg bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 transition-all"
+                                  className="p-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 transition-all cursor-pointer"
                                   title="Mark Reviewed"
                                 >
                                   <HiEye className="text-sm" />
@@ -585,7 +585,7 @@ const AdminDashboard = () => {
                               {app.status !== 'accepted' && (
                                 <button
                                   onClick={() => statusMutation.mutate({ id: app._id, status: 'accepted' })}
-                                  className="p-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 transition-all"
+                                  className="p-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 transition-all cursor-pointer"
                                   title="Accept"
                                 >
                                   <HiCheckCircle className="text-sm" />
@@ -594,7 +594,7 @@ const AdminDashboard = () => {
                               {app.status !== 'rejected' && (
                                 <button
                                   onClick={() => statusMutation.mutate({ id: app._id, status: 'rejected' })}
-                                  className="p-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 transition-all"
+                                  className="p-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 transition-all cursor-pointer"
                                   title="Reject"
                                 >
                                   <HiXCircle className="text-sm" />
@@ -603,7 +603,7 @@ const AdminDashboard = () => {
                               {app.status !== 'pending' && (
                                 <button
                                   onClick={() => statusMutation.mutate({ id: app._id, status: 'pending' })}
-                                  className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 transition-all"
+                                  className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-all cursor-pointer"
                                   title="Reset to Pending"
                                 >
                                   <HiArrowPath className="text-sm" />
@@ -622,7 +622,7 @@ const AdminDashboard = () => {
                 )}
 
                 {appsData?.total > 0 && (
-                  <div className="px-6 py-4 border-t border-white/5 text-xs text-slate-500">
+                  <div className="px-6 py-4 border-t border-slate-100 text-xs text-slate-500">
                     Showing {appsData.applications.length} of {appsData.total} applications
                   </div>
                 )}

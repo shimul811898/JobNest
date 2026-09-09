@@ -32,7 +32,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <Router>
-          <div className="min-h-screen bg-[#0f0f1a] text-slate-200 flex flex-col font-sans">
+          <div className="min-h-screen bg-[#f8fafc] text-slate-800 flex flex-col font-sans">
             <Navbar />
             <main className="flex-1">
               <Routes>

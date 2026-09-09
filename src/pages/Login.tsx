@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useGoogleLogin } from '@react-oauth/google';
@@ -16,15 +16,15 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Capture the protected route they came from, default to homepage '/'
   const redirectPath = location.state?.from?.pathname || '/';
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!email || !password) {
       toast.error('Please enter your email and password');
       return;
     }
+
     setLoading(true);
     try {
       await login(email, password);
@@ -54,66 +54,74 @@ const Login = () => {
   });
 
   return (
-    <div className="min-h-screen bg-[#0f0f1a] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20 relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-[#6C5CE7]/10 via-transparent to-transparent opacity-60 pointer-events-none" />
-      
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-20 sm:px-6 lg:px-8">
+      {/* Background Gradient */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-[#6C5CE7]/10 via-transparent to-transparent opacity-60" />
+
       {/* Login Card Container */}
-      <div className="max-w-md w-full p-8 rounded-3xl glass-card border border-white/10 space-y-6 shadow-2xl relative z-10">
+      <div className="glass-card relative z-10 w-full max-w-md space-y-6 rounded-3xl border border-slate-200/80 p-8 shadow-xl shadow-slate-100">
         
-        {/* Title */}
-        <div className="text-center space-y-2">
-          <Link to="/" className="inline-flex items-center space-x-1.5 mb-2 font-heading">
-            <span className="text-2xl font-black tracking-tight gradient-text">JobNest</span>
+        {/* Header Title */}
+        <div className="space-y-2 text-center">
+          <Link to="/" className="font-heading mb-2 inline-flex items-center space-x-1.5">
+            <span className="gradient-text text-2xl font-black tracking-tight">JobNest</span>
           </Link>
-          <h2 className="text-2xl font-bold font-heading text-white">Welcome Back</h2>
-          <p className="text-xs text-slate-300">Sign in to search listings and apply for jobs.</p>
+          <h2 className="font-heading text-2xl font-bold text-slate-900">Welcome Back</h2>
+          <p className="text-xs text-slate-500">Sign in to search listings and apply for jobs.</p>
         </div>
 
         {/* Credentials Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Email Input */}
+          
+          {/* Email Field */}
           <div className="space-y-1.5">
-            <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Email Address</label>
-            <div className="flex items-center bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 focus-within:border-[#6C5CE7]/40 transition-colors">
-              <HiEnvelope className="text-slate-500 mr-2.5 text-lg shrink-0" />
+            <label htmlFor="email" className="text-[11px] font-bold uppercase tracking-wider text-slate-700">
+              Email Address
+            </label>
+            <div className="flex items-center rounded-xl border border-slate-200 bg-white px-3 py-2.5 shadow-sm transition-colors focus-within:border-[#6C5CE7]">
+              <HiEnvelope className="mr-2.5 shrink-0 text-lg text-slate-400" />
               <input
+                id="email"
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
-                className="bg-transparent border-none outline-none w-full text-slate-200 placeholder-slate-500 text-sm py-0.5"
+                className="w-full border-none bg-transparent py-0.5 text-sm text-slate-800 placeholder-slate-400 outline-none"
               />
             </div>
           </div>
 
-          {/* Password Input */}
+          {/* Password Field */}
           <div className="space-y-1.5">
-            <div className="flex justify-between items-center">
-              <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Password</label>
-              <a 
-                href="#" 
-                onClick={(e) => { e.preventDefault(); toast.error('Password reset is not configured. Please register a new account.'); }} 
-                className="text-[10px] font-semibold text-[#00D2D3] hover:underline"
+            <div className="flex items-center justify-between">
+              <label htmlFor="password" className="text-[11px] font-bold uppercase tracking-wider text-slate-700">
+                Password
+              </label>
+              <button
+                type="button"
+                onClick={() => toast.error('Password reset is not configured. Please register a new account.')}
+                className="text-[10px] font-semibold text-[#6C5CE7] hover:underline"
               >
                 Forgot password?
-              </a>
+              </button>
             </div>
-            <div className="flex items-center bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 focus-within:border-[#6C5CE7]/40 transition-colors">
-              <HiLockClosed className="text-slate-500 mr-2.5 text-lg shrink-0" />
+            <div className="flex items-center rounded-xl border border-slate-200 bg-white px-3 py-2.5 shadow-sm transition-colors focus-within:border-[#6C5CE7]">
+              <HiLockClosed className="mr-2.5 shrink-0 text-lg text-slate-400" />
               <input
+                id="password"
                 type={showPassword ? 'text' : 'password'}
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="bg-transparent border-none outline-none w-full text-slate-200 placeholder-slate-500 text-sm py-0.5"
+                className="w-full border-none bg-transparent py-0.5 text-sm text-slate-800 placeholder-slate-400 outline-none"
               />
               <button
                 type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="text-slate-500 hover:text-slate-300 focus:outline-none ml-2 shrink-0"
+                onClick={() => setShowPassword((prev) => !prev)}
+                className="ml-2 shrink-0 cursor-pointer text-slate-400 hover:text-slate-600 focus:outline-none"
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
                 {showPassword ? <HiEyeSlash className="text-lg" /> : <HiEye className="text-lg" />}
               </button>
@@ -124,40 +132,41 @@ const Login = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#6C5CE7] hover:bg-[#5a3fd9] text-white py-3 rounded-xl text-sm font-semibold transition-all duration-150 shadow-md shadow-[#6C5CE7]/20 flex items-center justify-center gap-2 mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="mt-2 flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#6C5CE7] to-[#00D2D3] py-3 text-sm font-semibold text-white shadow-md shadow-[#6C5CE7]/20 transition-all hover:opacity-95 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {loading ? 'Signing In...' : 'Sign In'}
           </button>
         </form>
 
-        {/* Google Sign In Section */}
+        {/* Divider & OAuth Section */}
         <div className="space-y-3">
           <div className="relative flex items-center py-1">
-            <div className="flex-grow border-t border-white/10"></div>
-            <span className="flex-shrink mx-3 text-slate-500 text-[11px] uppercase tracking-wider font-semibold">
+            <div className="flex-grow border-t border-slate-200" />
+            <span className="mx-3 flex-shrink text-[11px] font-semibold uppercase tracking-wider text-slate-400">
               Or continue with
             </span>
-            <div className="flex-grow border-t border-white/10"></div>
+            <div className="flex-grow border-t border-slate-200" />
           </div>
 
           <button
             type="button"
             onClick={() => handleCustomGoogleLogin()}
             disabled={loading}
-            className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white font-medium text-sm transition-all duration-200 shadow-md shadow-black/20 group cursor-pointer"
+            className="group flex w-full cursor-pointer items-center justify-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-200 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            <FcGoogle className="text-xl group-hover:scale-110 transition-transform" />
+            <FcGoogle className="text-xl transition-transform group-hover:scale-110" />
             <span>Continue with Google</span>
           </button>
         </div>
 
-        {/* Register Redirect */}
-        <p className="text-center text-xs text-slate-400 mt-2">
+        {/* Footer Redirect */}
+        <p className="mt-2 text-center text-xs text-slate-500">
           New to JobNest?{' '}
-          <Link to="/register" state={location.state} className="font-semibold text-[#00D2D3] hover:underline">
+          <Link to="/register" state={location.state} className="font-semibold text-[#6C5CE7] hover:underline">
             Create an Account
           </Link>
         </p>
+
       </div>
     </div>
   );

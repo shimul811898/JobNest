@@ -39,25 +39,25 @@
   --font-heading: 'Outfit', system-ui, sans-serif;
 }
 
-/* Custom scrollbar for dark glass theme */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #090a14;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(108, 92, 231, 0.35);
-  border-radius: 4px;
+  background: linear-gradient(180deg, #6C5CE7, #00D2D3);
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 210, 211, 0.6);
+  background: #6C5CE7;
 }
 
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 /* Z-Index Overrides for Proper Layering */
@@ -75,105 +75,132 @@ section {
   z-index: 10;
 }
 
-/* Global Dark Glass Canvas */
+/* Global Premium Light Grey-White Glass Canvas */
 body {
   font-family: 'Inter', system-ui, sans-serif;
-  background-color: #080912 !important;
+  background-color: #f8fafc !important;
   background-image: 
-    radial-gradient(at 0% 0%, rgba(108, 92, 231, 0.18) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(0, 210, 211, 0.15) 0px, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(108, 92, 231, 0.08) 0px, transparent 60%),
-    radial-gradient(at 80% 100%, rgba(0, 210, 211, 0.12) 0px, transparent 50%) !important;
+    radial-gradient(at 0% 0%, rgba(108, 92, 231, 0.08) 0px, transparent 45%),
+    radial-gradient(at 100% 0%, rgba(0, 210, 211, 0.09) 0px, transparent 45%),
+    radial-gradient(at 50% 50%, rgba(241, 245, 249, 0.9) 0px, transparent 65%),
+    radial-gradient(at 85% 95%, rgba(108, 92, 231, 0.06) 0px, transparent 50%),
+    radial-gradient(at 15% 95%, rgba(0, 210, 211, 0.07) 0px, transparent 50%) !important;
   background-attachment: fixed !important;
-  color: #e2e8f0 !important;
+  color: #1e293b !important;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
 /* Shiny Gradient Text Utility */
 .gradient-text {
-  background: linear-gradient(135deg, #a29bfe 0%, #00D2D3 100%);
+  background: linear-gradient(135deg, #6C5CE7 0%, #00B4D8 50%, #00D2D3 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* High-End Glassmorphism Utilities */
+.gradient-text-alt {
+  background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #EC4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* High-End Frosted Glassmorphism Utilities (Grey-White Palette) */
 .glass {
-  background: rgba(18, 20, 36, 0.65) !important;
+  background: rgba(255, 255, 255, 0.82) !important;
   backdrop-filter: blur(16px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 0 0 1px rgba(255, 255, 255, 0.8) inset !important;
 }
 
 .glass-dark {
-  background: rgba(9, 10, 20, 0.85) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
   backdrop-filter: blur(20px) saturate(190%) !important;
   -webkit-backdrop-filter: blur(20px) saturate(190%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.45) !important;
+  border: 1px solid rgba(226, 232, 240, 0.85) !important;
+  box-shadow: 0 12px 35px -5px rgba(15, 23, 42, 0.08) !important;
 }
 
 .glass-card {
-  background: rgba(20, 22, 40, 0.6);
+  background: rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  background: rgba(26, 29, 54, 0.75);
-  border-color: rgba(108, 92, 231, 0.4);
-  box-shadow: 0 20px 40px -10px rgba(108, 92, 231, 0.2), 0 0 20px rgba(0, 210, 211, 0.08);
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(108, 92, 231, 0.35);
+  box-shadow: 0 20px 40px -10px rgba(108, 92, 231, 0.12), 0 4px 20px rgba(0, 210, 211, 0.08), 0 0 0 1px rgba(108, 92, 231, 0.2) inset;
   transform: translateY(-4px);
 }
 
 .glass-pill {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(226, 232, 240, 0.9);
 }
 
 /* Card Hover Elevation */
 .card-hover {
   position: relative;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .card-hover:hover {
   transform: translateY(-4px);
-  border-color: rgba(108, 92, 231, 0.4) !important;
-  box-shadow: 0 16px 36px -8px rgba(108, 92, 231, 0.25), 0 0 20px rgba(0, 210, 211, 0.1) !important;
+  border-color: rgba(108, 92, 231, 0.35) !important;
+  box-shadow: 0 20px 38px -8px rgba(108, 92, 231, 0.15), 0 4px 15px rgba(0, 210, 211, 0.08) !important;
 }
 
-/* Dark Glass Form Inputs */
+/* Modern Clean Form Inputs */
 input, select, textarea {
-  background-color: rgba(255, 255, 255, 0.04) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  color: #f8fafc !important;
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
   transition: all 0.2s ease-in-out !important;
 }
 input:focus, select:focus, textarea:focus {
-  background-color: rgba(255, 255, 255, 0.08) !important;
-  border-color: #00D2D3 !important;
-  box-shadow: 0 0 0 3px rgba(0, 210, 211, 0.18) !important;
+  background-color: #ffffff !important;
+  border-color: #6C5CE7 !important;
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.18) !important;
   outline: none !important;
 }
 input::placeholder, textarea::placeholder {
-  color: #64748b !important;
+  color: #94a3b8 !important;
 }
 select option {
-  background-color: #121324;
-  color: #f8fafc;
+  background-color: #ffffff;
+  color: #0f172a;
 }
 
-/* Action button glowing transitions */
-button[type="submit"], .bg-gradient-to-r {
+/* Action button gradient transitions */
+button[type="submit"], .btn-gradient, .bg-gradient-to-r {
   transition: all 0.25s ease !important;
 }
-button[type="submit"]:hover, .bg-gradient-to-r:hover {
-  box-shadow: 0 8px 24px -4px rgba(108, 92, 231, 0.45), 0 0 12px rgba(0, 210, 211, 0.2) !important;
+button[type="submit"]:hover, .btn-gradient:hover {
+  box-shadow: 0 10px 25px -4px rgba(108, 92, 231, 0.4), 0 2px 10px rgba(0, 210, 211, 0.2) !important;
+}
+
+/* Soft badge gradients */
+.badge-gradient-purple {
+  background: linear-gradient(135deg, rgba(108, 92, 231, 0.12), rgba(162, 155, 254, 0.18));
+  border: 1px solid rgba(108, 92, 231, 0.25);
+  color: #5a3fd9;
+}
+
+.badge-gradient-cyan {
+  background: linear-gradient(135deg, rgba(0, 210, 211, 0.12), rgba(0, 180, 216, 0.18));
+  border: 1px solid rgba(0, 210, 211, 0.3);
+  color: #038a8f;
+}
+
+.badge-gradient-emerald {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(5, 150, 105, 0.18));
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #047857;
 }
