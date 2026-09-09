@@ -5,7 +5,7 @@ import './index.css'
 import App from './App'
 
 const GOOGLE_CLIENT_ID =
-  (import.meta.env.VITE_GOOGLE_CLIENT_ID || '739946854298-0n9pngfk5586av75bufnnekki3insu1m.apps.googleusercontent.com').trim();
+  (import.meta.env.VITE_GOOGLE_CLIENT_ID || '350839933129-is25ho3og0u6p387730cng17o76it8c9.apps.googleusercontent.com').trim();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
